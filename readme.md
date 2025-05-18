@@ -16,6 +16,14 @@ Primary location of this project is [on github](https://github.com/krisk0/ek_fix
 
 **This is not a joke. If you want many children, upgrade your computer first.**
 
+## Language support
+
+This mod does not add any user-visible strings. Thus, all languages all supported.
+
+## Bugs
+
+Send bugreports and suggestions via github. If you found the mod elsewhere, you better visit primary page [on github](https://github.com/krisk0/ek_fixes_and_tweaks/).
+
 ## Interface changes
 
 * `window_character.gui` changes main character window so fertility is displayed close to age. As a bonus, some whitespace at end-of-line was removed. File path: `ek_fixes_and_tweaks/gui/window_character.gui`.
@@ -56,6 +64,6 @@ For more details on manual mod installation, see [wiki](https://ck3.paradoxwikis
 
 ## Note to Elder Kings team
 
-I attempted to file bug-report at [reddit](https://www.reddit.com/r/ElderKings/). The post was immediately deleted, in a fraction of a second. This could not be human, this was definitely a robot.
+I attempted to file a bug-report at [reddit](https://www.reddit.com/r/ElderKings/). The post was immediately deleted, in a fraction of a second. This could not be human, this was definitely a robot.
 
 I do not know why your robot killed my post. Was it 'bugreport', my forum alias, or my IP address. I do not know where to file bugreports, or exchange opinion, or suggest improvements. If you want me to cooperate, tell me how. File bugreport here at github.
