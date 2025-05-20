@@ -42,7 +42,7 @@ Liege usually educates most important children, such as future rulers or council
 
 ## Parameter changes
 
-* `ek_defines.txt` removes upper limit on children of land owners, and allows non-landed people to have five children. There are also changes to reproduction age, but they do nothing since game engine does not allow children to have sex or get pregnant. As a bonus, some whitespace at end-of-line was removed. File path: `ek_fixes_and_tweaks/common/defines/ek_defines.txt`.
+* `ek_defines.txt` removes upper limit on children of land owners; allows non-landed people to have five children; increases birthrate of concubines. There are also changes to reproduction age, but they do nothing since game engine does not allow children to have sex or get pregnant. As a bonus, some whitespace at end-of-line was removed. File path: `ek_fixes_and_tweaks/common/defines/ek_defines.txt`.
 
 If you do not play on a very good computer, then do not apply the birthrate changes. You will experience a great slow-down if your computer is not top tier.
 
