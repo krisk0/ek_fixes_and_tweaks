@@ -2891,7 +2891,10 @@ scripted_trigger ek_0045_valid_courtier = {
 	is_courtier_of = root
 	is_available_ai_adult = yes
 	NOT = {
-		this = root.cp:councillor_chancellor
+		AND = {
+			exists = root.cp:councillor_chancellor
+			this = root.cp:councillor_chancellor
+		}
 	}
 	NOT = {
 		government_has_flag = government_is_tribal

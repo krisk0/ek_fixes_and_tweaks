@@ -28,7 +28,7 @@ Send bugreports and suggestions via github. If you found the mod elsewhere, you 
 
 ## Bug fixes
 
-* `ek_yearly_events.txt` contains unreachable code that is supposed to heal from lovers pox. Probably the person creating the code desired to enable love pox healing in `ek_yearly_events.0138`. To really enable the cure, one line was added to precondition trigger. As a bonus, some whitespace at end-of-line was removed. File path: `ek_fixes_and_tweaks/events/ek_yearly_events.txt`.
+* `ek_yearly_events.txt` contains unreachable code that is supposed to heal from lovers pox. Probably EK team member creating the code desired to enable love pox healing in `ek_yearly_events.0138`. To really enable the cure, one line was added to precondition trigger. The file also contains a script error. Script author probably believes that every court has a chancellor. When chancellor is missing, `ek_yearly_events.0045` does not work properly and spams `error.log`. The bug is fixed by adding an additional check. As a bonus, some whitespace at end-of-line was removed. File path: `ek_fixes_and_tweaks/events/ek_yearly_events.txt`.
 * `ek_travel_events.txt` has reference to non-existing value `minor_stress_impact_gloss`. Changed to `minor_stress_impact_loss`. As a bonus, some whitespace at end-of-line was removed. File path: `ek_fixes_and_tweaks/events/travel_events/ek_travel_events.txt`.
 * `ep1_achievements.txt` has erroneous and incorrectly formatted code that spams `error.log` with messages 
 
@@ -37,7 +37,7 @@ Send bugreports and suggestions via github. If you found the mod elsewhere, you 
   Script location: file: common/achievements/ep1_achievements.txt line: 235 (ep1_18_achievement)
 ```
 
-This is a bug in base game in event `ep1_18_achievement`, inherited by Elder Kings. I added extra checks that appear to fix the bug. As a bonus, I fixed formatting. File path: `common/achievements/ep1_achievements.txt`.
+This is a bug in base game in event `ep1_18_achievement`, inherited by Elder Kings. I added an extra check that appear to fix the bug. As a bonus, I fixed formatting. File path: `common/achievements/ep1_achievements.txt`.
 
 ## Gameplay changes
 
