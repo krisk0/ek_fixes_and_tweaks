@@ -30,7 +30,7 @@ Send bugreports and suggestions via github. If you found the mod elsewhere, you 
 
 * `ek_yearly_events.txt` contains unreachable code that is supposed to heal from lovers pox. Probably EK team member creating the code desired to enable love pox healing in `ek_yearly_events.0138`. To really enable the cure, one line was added to precondition trigger. The file also contains a script error. Script author probably believes that every court has a chancellor. When chancellor is missing, `ek_yearly_events.0045` does not work properly and spams `error.log`. The bug is fixed by adding an additional check. As a bonus, some whitespace at end-of-line was removed. File path: `ek_fixes_and_tweaks/events/ek_yearly_events.txt`.
 * `ek_travel_events.txt` has reference to non-existing value `minor_stress_impact_gloss`. Changed to `minor_stress_impact_loss`. As a bonus, some whitespace at end-of-line was removed. File path: `ek_fixes_and_tweaks/events/travel_events/ek_travel_events.txt`.
-* `ep1_achievements.txt` has erroneous and incorrectly formatted code that spams `error.log` with messages 
+* `ep1_achievements.txt` has erroneous and incorrectly formatted code that spams `error.log` with messages
 
 ```
   Error: Invalid right side during comparison 'previous_holder'
@@ -46,7 +46,7 @@ This is a bug in base game in event `ep1_18_achievement`, inherited by Elder Kin
 
 ### Motivation to change wet nurse behavior
 
-Liege usually educates most important children, such as future rulers or councillors. Not giving them virtues is a great disadvantage. Besides, childrren are supposed to have close contacts with each other, so it is natural if all are indoctrinated with the same values.
+Liege usually educates most important children, such as future rulers or councillors. Not giving them virtues is a great disadvantage. Besides, children are supposed to have close contacts with each other, so it is natural if all are indoctrinated with the same values.
 
 ## Parameter changes
 
@@ -74,3 +74,5 @@ I do not know why your robot killed my post. Was it 'bugreport', my forum alias,
 1. [Heal us, Mara](https://github.com/krisk0/heal_us_mara)
 2. [Focus and guardian](https://github.com/krisk0/focus_and_guardian)
 3. [Elder Kings fixes and tweaks](https://github.com/krisk0/ek_fixes_and_tweaks)
+4. [Disable achievements](https://github.com/krisk0/disable_achievements)
+5. [Scarab blood icon](https://github.com/krisk0/scarab_icon)
