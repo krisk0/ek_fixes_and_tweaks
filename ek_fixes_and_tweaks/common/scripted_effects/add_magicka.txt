@@ -1,0 +1,16 @@
+﻿# Same effect as EK add_magicka, but calls magicka_max once and 9 lines shorter
+add_magicka = {
+	custom_description = {
+		text = add_magicka
+		value = $VALUE$
+		if = {
+			limit = { $VALUE$ != 0 }
+			if = {
+				limit = { NOT = { has_variable = magicka } }
+				set_variable = { name = magicka value = 0 }
+			}
+			change_variable = { name = magicka add = $VALUE$ }
+			clamp_variable = { name = magicka max = magicka_max }
+		}
+  }
+}

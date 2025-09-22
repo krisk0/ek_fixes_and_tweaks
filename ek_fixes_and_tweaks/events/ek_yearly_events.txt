@@ -2890,11 +2890,9 @@ scripted_trigger ek_0045_valid_character = {
 scripted_trigger ek_0045_valid_courtier = {
 	is_courtier_of = root
 	is_available_ai_adult = yes
+	exists = cp:councillor_chancellor
 	NOT = {
-		AND = {
-			exists = root.cp:councillor_chancellor
-			this = root.cp:councillor_chancellor
-		}
+		this = root.cp:councillor_chancellor
 	}
 	NOT = {
 		government_has_flag = government_is_tribal
@@ -3167,372 +3165,6 @@ ek_yearly_events.0048 = {
 		random_list = {
 			   10 = { add_trait = zealous }
 			   90 = { }
-		}
-	}
-}
-
-# The Fate of a Friend
-ek_yearly_events.0049 = {
-	type = character_event
-	content_source = dlc_ek
-	title = ek_yearly_events.0049.t
-	desc = ek_yearly_events.0049.desc
-	theme = friendly
-
-	left_portrait = {
-		character = root
-		animation = worry
-	}
-
-	lower_center_portrait = {
-		character = scope:missing_friend
-	}
-
-	cooldown = { years = yearly_cooldown }
-
-	trigger = {
-		any_courtier = {
-			is_available_ai_adult = yes
-			has_relation_friend = root
-		}
-	}
-
-	immediate = {
-		select_local_mount_effect = yes
-		random_courtier = {
-			limit = {
-				is_available_ai_adult = yes
-				has_relation_friend = root
-			}
-			save_scope_as = missing_friend
-		}
-	}
-
-	option = { # look for friend
-		name = ek_yearly_events.0049.a
-
-		stress_impact = {
-			craven = medium_stress_impact_gain
-			lazy = medium_stress_impact_gain
-			callous = medium_stress_impact_gain
-		}
-		hidden_effect = {
-			random_list = {
-				25 = {
-					trigger_event = {
-						id = ek_yearly_events.0050 # friend found
-						days = {2 4}
-					}
-				}
-				25 = {
-					trigger_event = {
-						id = ek_yearly_events.0051 # friend dead
-						days = {2 4}
-					}
-				}
-			}
-		}
-	}
-
-	option = { # Meh
-		name = ek_yearly_events.0049.b
-		stress_impact = {
-			diligent = medium_stress_impact_gain
-			compassionate = medium_stress_impact_gain
-			lazy = medium_stress_impact_loss
-		}
-		hidden_effect = {
-			random_list = {
-				25 = {
-					trigger_event = {
-						id = ek_yearly_events.0052 # friend found friend dead
-						days = {2 4}
-					}
-				}
-			   	25 = {
-				   	send_interface_toast = {
-						type = event_toast_effect_good
-						left_icon = scope:missing_friend
-						title = tooltip.ek_yearly_events.0049.b.fine # friend was ok
-					}
-				}
-			}
-		}
-	}
-}
-
-# friend found
-ek_yearly_events.0050 = {
-	type = character_event
-	content_source = dlc_ek
-	title = ek_yearly_events.0049.t
-	desc = ek_yearly_events.0050.desc
-	theme = friendly
-	override_background = {
-		reference = terrain_scope
-	}
-
-	left_portrait = {
-		character = root
-		animation = happiness
-	}
-
-	right_portrait = {
-		character = scope:missing_friend
-	}
-
-	option = { # i actually wanna lay with you
-		name = ek_yearly_events.0050.a
-		trigger = {
-			root = { is_attracted_to_gender_of = scope:missing_friend  }
-		}
-		stress_impact = {
-			chaste = medium_stress_impact_gain
-			shy = medium_stress_impact_gain
-		}
-
-		show_as_tooltip = {
-			had_sex_with_effect = {
-				CHARACTER = scope:missing_friend
-				PREGNANCY_CHANCE = seduce_pregnancy_chance
-			}
-			custom_tooltip = seduce_outcome.0003.a.tt
-		}
-
-		random_list = {
-			25 = {  }
-			25 = { set_relation_lover = { reason = lover_history target = scope:missing_friend } }
-		}
-	}
-
-
-	option = { # of course, you my bff
-		name = ek_yearly_events.0050.b
-
-		stress_impact = {
-			shy = medium_stress_impact_gain
-		}
-
-		random_list = {
-			25 = {  }
-			25 = { set_relation_best_friend = { reason = best_friend_sworn target = scope:missing_friend }	}
-		}
-	}
-
-	option = { # shut up
-		name = ek_yearly_events.0050.c
-
-		stress_impact = {
-			gregarious = medium_stress_impact_gain
-		}
-	}
-}
-
-#friend found dead
-ek_yearly_events.0051 = {
-	type = character_event
-	content_source = dlc_ek
-	title = ek_yearly_events.0049.t
-	desc = ek_yearly_events.0051.desc
-	theme = death
-	override_background = {
-		reference = terrain_scope
-	}
-
-	left_portrait = {
-		character = root
-		animation = grief
-	}
-
-	right_portrait = {
-		character = scope:missing_friend
-	}
-
-	immediate = {
-		select_local_animal_effect = { TYPE = dangerous }
-		set_signature_weapon_effect = yes
-		scope:missing_friend = { death = { death_reason = death_eaten } }
-		add_stress = medium_stress_impact_gain
-	}
-
-	option = { # by the power of love!
-		name = ek_yearly_events.0051.a
-		trigger = { root = { is_attracted_to_gender_of = scope:missing_friend } }
-
-		custom_tooltip = ek_yearly_events.0051.a.tooltip
-		stress_impact = {
-			craven = medium_stress_impact_gain
-			lazy = medium_stress_impact_gain
-		}
-
-		duel = {
-			skill = prowess
-			value = mediocre_skill_rating
-			10 = {
-				desc = ek_yearly_events.0008.a.success
-				compare_modifier = {
-					value = scope:duel_value
-					multiplier = 1
-				}
-				send_interface_toast = {
-					left_icon = scope:missing_friend
-					type = event_toast_effect_good
-					title = tooltip.ek_yearly_events.0051.a.success
-					add_prestige = minor_prestige_gain
-				}
-			}
-
-			5 = {
-				desc = ek_yearly_events.0008.a.failure
-				send_interface_toast = {
-					left_icon = root
-					type = event_toast_effect_bad
-					title = tooltip.ek_yearly_events.0008.a.failure
-					add_prestige = medium_prestige_loss
-					random_list = {
-						25 = { death = { death_reason = death_battle } }
-						25 = { increase_wounds_effect = { REASON = battle } }
-					}
-				}
-			}
-		}
-	}
-
-	option = { # by the power of friendship!
-		name = ek_yearly_events.0051.b
-
-		custom_tooltip = ek_yearly_events.0051.b.tooltip
-		stress_impact = {
-			craven = medium_stress_impact_gain
-			lazy = medium_stress_impact_gain
-		}
-
-		duel = {
-			skill = prowess
-			value = decent_skill_rating
-			10 = {
-				desc = ek_yearly_events.0008.a.success
-				compare_modifier = {
-					value = scope:duel_value
-					multiplier = 1
-				}
-				send_interface_toast = {
-					left_icon = scope:missing_friend
-					type = event_toast_effect_good
-					title = tooltip.ek_yearly_events.0051.a.success
-					add_prestige = minor_prestige_gain
-				}
-			}
-
-			5 = {
-				desc = ek_yearly_events.0008.a.failure
-				send_interface_toast = {
-					left_icon = root
-					type = event_toast_effect_bad
-					title = tooltip.ek_yearly_events.0008.a.failure
-					add_prestige = medium_prestige_loss
-					random_list = {
-						25 = { death = { death_reason = death_battle } }
-						25 = { increase_wounds_effect = { REASON = battle } }
-					}
-				}
-			}
-		}
-	}
-
-	option = { # I'm out
-		name = ek_yearly_events.0051.c
-		custom_tooltip = ek_yearly_events.0051.c.tooltip
-		add_prestige = major_prestige_loss
-
-		stress_impact = {
-			gregarious = medium_stress_impact_gain
-			brave = medium_stress_impact_gain
-			vengeful = medium_stress_impact_gain
-		}
-	}
-}
-
-# friend found friend dead
-ek_yearly_events.0052 = {
-	type = character_event
-	content_source = dlc_ek
-	title = ek_yearly_events.0049.t
-	desc = ek_yearly_events.0052.desc
-	theme = death
-
-	left_portrait = {
-		character = root
-		animation = grief
-	}
-
-	right_portrait = {
-		character = scope:messenger_friend
-		animation = sadness
-	}
-
-	immediate = {
-		select_local_animal_effect = { TYPE = dangerous }
-		set_signature_weapon_effect = yes
-		scope:missing_friend = { death = { death_reason = death_eaten } }
-		add_stress = medium_stress_impact_gain
-		random_courtier = {
-			limit = { is_available_ai_adult = yes }
-			save_scope_as = messenger_friend
-		}
-	}
-
-	option = { # i actually wanna lay with you
-		name = ek_yearly_events.0052.a
-		trigger = {
-			root = { is_attracted_to_gender_of = scope:messenger_friend  }
-		}
-		stress_impact = {
-			chaste = medium_stress_impact_gain
-			shy = medium_stress_impact_gain
-			rakish = medium_stress_impact_loss
-		}
-
-		show_as_tooltip = {
-			had_sex_with_effect = {
-				CHARACTER = scope:messenger_friend
-				PREGNANCY_CHANCE = seduce_pregnancy_chance
-			}
-		}
-
-		random_list = {
-			25 = {  }
-			25 = {
-				if = {
-					limit = {
-						scope:missing_friend = {
-							is_alive = yes
-						}
-					}
-					set_relation_lover = { reason = lover_missing_friend target = scope:missing_friend }
-				}
-			}
-		}
-	}
-
-	option = { # of course, you my bff
-		name = ek_yearly_events.0052.b
-
-		stress_impact = {
-			shy = medium_stress_impact_gain
-		}
-
-		random_list = {
-			25 = {  }
-			25 = { set_relation_best_friend = { reason = best_friend_sworn target = scope:messenger_friend } }
-		}
-	}
-
-	option = { # shut up
-		name = ek_yearly_events.0052.c
-
-		stress_impact = {
-			gregarious = medium_stress_impact_gain
 		}
 	}
 }
@@ -8228,11 +7860,7 @@ ek_yearly_events.0111 = {
 		hidden_effect = {
 			if = {
 				limit = {
-					OR = {
-						is_necromancer = yes
-						is_undead = yes
-						is_vampire = yes
-					}
+					is_hated_meridia = yes
 				}
 				random_list = {
 					99 = { death = { death_reason = death_meridia }	}
@@ -10528,7 +10156,7 @@ ek_yearly_events.0135 = {
 
 	option = { # elf dread option
 		name = ek_yearly_events.0135.a
-		trigger = { dynasty = dynasty:730000 }
+		trigger = { dynasty = dynasty:dyn_direnni }
 		add_prestige = medium_prestige_gain
 		add_dread = medium_dread_gain
 		add_tyranny = medium_tyranny_value
@@ -10536,7 +10164,7 @@ ek_yearly_events.0135 = {
 
 	option = { # elf nice option
 		name = ek_yearly_events.0135.b
-		trigger = { dynasty = dynasty:730000 }
+		trigger = { dynasty = dynasty:dyn_direnni }
 		add_prestige = medium_prestige_loss
 		add_character_modifier = {
 			modifier = hold_court_8130_tolerance_modifier
@@ -12083,7 +11711,7 @@ ek_yearly_events.0152 = {
 	}
 
 	immediate = {
-		character:hunding_101 = {
+		character:hunding_3 = {
 			save_scope_as = divad
 		}
 	}
@@ -12278,7 +11906,7 @@ ek_yearly_events.0155 = {
 
 	option = { # al-katrica dread option
 		name = ek_yearly_events.0135.a
-		trigger = { dynasty = dynasty:210005 }
+		trigger = { dynasty = dynasty:dyn_katrica }
 		add_prestige = medium_prestige_gain
 		add_dread = medium_dread_gain
 		add_tyranny = medium_tyranny_value
@@ -12286,7 +11914,7 @@ ek_yearly_events.0155 = {
 
 	option = { # al-katrica nice option
 		name = ek_yearly_events.0135.b
-		trigger = { dynasty = dynasty:210005 }
+		trigger = { dynasty = dynasty:dyn_katrica }
 		add_prestige = minor_prestige_gain
 	}
 

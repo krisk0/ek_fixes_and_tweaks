@@ -1,0 +1,18 @@
+﻿# If mana is maximal, cast a spell
+ekfix_cast_a_spell = {
+	check_create_action = {
+		if = {
+			limit = {
+				exists = var:magicka
+				var:magicka >= t1_spell_cost
+				var:magicka = magicka_max
+			}
+		}
+		# TODO: heal sick child if possible
+		ai_magic_general_effect = yes # AI will cast spells
+		ai_court_mage_magic_effect = yes # AI Court Mage will cast spells
+	}
+
+	effect = {
+	}
+}
