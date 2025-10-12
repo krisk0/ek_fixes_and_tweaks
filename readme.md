@@ -37,15 +37,22 @@ Send bugreports and suggestions via github. If you found the mod elsewhere, you 
 * File `ek_yearly_events.txt`, event `ek_yearly_events.0138` contains unreachable code that is supposed to heal from lovers pox: `remove_trait = lovers_pox`.
 To really enable the cure, one line was added to precondition trigger. As a bonus, some whitespace at end-of-line was removed. File path: `ek_fixes_and_tweaks/events/ek_yearly_events.txt`.
 * `ep1_achievements.txt` has erroneous and incorrectly formatted code that spams `error.log` with messages
-
 ```
   Error: Invalid right side during comparison 'previous_holder'
   Script location: file: common/achievements/ep1_achievements.txt line: 235 (ep1_18_chievement)
 ```
-
 This is a bug in base game in event `ep1_18_achievement`, inherited by Elder Kings. I added an extra check that appear to fix the bug. As a bonus, I fixed formatting. File path: `common/achievements/ep1_achievements.txt`.
 
 Two bugs described above are also seen in version 0.15.1. They survived two versions change: 0.15.1 → 0.16.2.1 → 0.16.3.1. EK team, is it not time to fix?
+* `lifespan_traits_inheritance_effect` has two strange `NOT = { … }` blocks with two condifions inside:
+```
+NOT = { has_trait = lifespan_1 has_trait = lifespan_2 }
+```
+Two conditions in bracers and explicitly ANDed, therefore the line means "don't have both life1 and life2". Thus the line evaluates `yes` for all characters. Obviously code author meant something else.
+
+There is another problem the subroutine: comment `3 + 3 = 3 or 2 or 4` is out-of-sync with code: life3+life3 results in either life3 or life4, not life2.
+
+Thus the subroutine has multiple problems, so I reimplemented it, following comments like `3 + 3 = …`, and keeping chances found in random_list blocks. File name: `common/scripted_effects/lifespan_traits_inheritance.txt`. My code is a lot shorter (172+39 visus 719), because I pre-calculate two numbers in range 0…4 and only then give longevity gene.
 
 ## Gameplay changes
 
@@ -86,7 +93,7 @@ For more details on manual mod installation, see [wiki](https://ck3.paradoxwikis
 
 ## Note to Elder Kings team
 
-I attempted to file a bug-report at [reddit](https://www.reddit.com/r/ElderKings/). The post was immediately deleted, in a fraction of a second. This could not be human, this was definitely a robot.
+I attempted to file a bug-report at [reddit](https://www.reddit.com/r/ElderKings/). The post was immediately deleted, in a fraction of a second. Could not be human, this was definitely a robot.
 
 I do not know why your robot killed my post. Was it 'bugreport', my forum alias, or my IP address. I do not know where to file bugreports, or exchange opinion, or suggest improvements. If you want me to cooperate, tell me how. File bugreport here at github.
 

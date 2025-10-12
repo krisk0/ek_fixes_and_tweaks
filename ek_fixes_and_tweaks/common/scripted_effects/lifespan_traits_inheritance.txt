@@ -1,0 +1,173 @@
+﻿# Re-implementation, shorter and bug-fixing.
+#
+# Dynasty trait that gives chance of reinforcing congenital traits is not
+#  respected, in original and in code below.
+lifespan_traits_inheritance_effect = {
+	set_local_variable = {
+		name = m_span
+		value = scope:mother.ek_lifespan_no
+	}
+	set_local_variable = {
+		name = f_span
+		value = scope:real_father.ek_lifespan_no
+	}
+	if = {
+		limit = { local_var:m_span > local_var:f_span }
+		set_local_variable = {
+			name = large
+			value = local_var:m_span
+		}
+		set_local_variable = {
+			name = small
+			value = local_var:f_span
+		}
+	}
+	else = {
+		set_local_variable = {
+			name = large
+			value = local_var:f_span
+		}
+		set_local_variable = {
+			name = small
+			value = local_var:m_span
+		}
+	}
+
+	# >3 + >3 = 4 or 3
+	if = {
+		limit = { local_var:small = 4 }
+		random_list = {
+			10 = { add_trait = lifespan_3 }
+			90 = { add_trait = lifespan_4 }
+		}
+	}
+
+	#>3 + 3 = 4 or 3
+	else_if = {
+		limit = {
+			local_var:small = 3
+			local_var:large = 4
+		}
+		random_list = {
+			60 = { add_trait = lifespan_3 }
+			40 = { add_trait = lifespan_4 }
+		}
+	}
+
+	#3 + 3 = 3 or 2 or 4
+	else_if = {
+		limit = {
+			local_var:small = 3
+		}
+		# Original code only gave 3 or 4, which contradicts comment above. We give 2, 3
+		#  or 4
+		random_list = {
+			2 = { add_trait = lifespan_2 }
+			96 = { add_trait = lifespan_3 }
+			2 = { add_trait = lifespan_4 }
+		}
+	}
+
+	#>2 + 2 = 2 or 3
+	else_if = {
+		limit = {
+			local_var:small = 2
+			local_var:large > 2
+		}
+		random_list = {
+			60 = { add_trait = lifespan_2 }
+			40 = { add_trait = lifespan_3 }
+		}
+	}
+
+	# >2 + 1 = 1 or 2 or 3
+	else_if = {
+		limit = {
+			local_var:small = 1
+			local_var:large > 2
+		}
+		random_list = {
+			20 = { add_trait = lifespan_1 }
+			60 = { add_trait = lifespan_2 }
+			20 = { add_trait = lifespan_3 }
+		}
+	}
+
+	#>2 + 0 = 0, 1, 2 or 3
+	else_if = {
+		limit = {
+			local_var:small = 0
+			local_var:large > 2
+		}
+		random_list = {
+			20 = { }
+			30 = { add_trait = lifespan_1 }
+			30 = { add_trait = lifespan_2 }
+			20 = { add_trait = lifespan_3 }
+		}
+	}
+	# Now large < 3
+
+	# 2 + 2 = 2 or 3
+	else_if = {
+		limit = {
+			local_var:small = 2
+		}
+		random_list = {
+			90 = { add_trait = lifespan_2 }
+			10 = { add_trait = lifespan_3 }
+		}
+	}
+
+	#2 + 1 = 1 or 2
+	else_if = {
+		limit = {
+			local_var:small = 1
+			local_var:large = 2
+		}
+		random_list = {
+			50 = { add_trait = lifespan_2 }
+			50 = { add_trait = lifespan_1 }
+		}
+	}
+
+	#2 + 0 = 0 or 1 or 2
+	else_if = {
+		limit = {
+			local_var:small = 0
+			local_var:large = 2
+		}
+		random_list = {
+			20 = { }
+			60 = { add_trait = lifespan_1 }
+			20 = { add_trait = lifespan_2 }
+		}
+	}
+	# Now large < 2
+
+	#1 + 1 = 1 or 2
+	else_if = {
+		limit = {
+			local_var:small = 1
+		}
+		random_list = {
+			85 = { add_trait = lifespan_1 }
+			15 = { add_trait = lifespan_2 }
+		}
+	}
+
+	#1 + 0 = 0 or 1
+	else_if = {
+		limit = {
+			local_var:large = 1
+		}
+		random = {
+			chance = 50
+			add_trait = lifespan_1
+		}
+	}
+
+	# 0 + 0 = nothing
+
+	add_character_flag = char_setup
+}

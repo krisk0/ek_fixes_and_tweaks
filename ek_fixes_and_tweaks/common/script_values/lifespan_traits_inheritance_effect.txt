@@ -1,0 +1,39 @@
+﻿ek_lifespan_no = {
+	if = {
+		limit = { has_character_flag = artificial_lifespan }
+		if = {
+			limit = { has_trait = natural_lifespan_1 }
+			value = 1
+		}
+		else_if = { 
+			limit = { has_trait = natural_lifespan_2 }
+			value = 2
+		}
+		else_if = { 
+			limit = { has_trait = natural_lifespan_3 }
+			value = 3
+		}
+		else_if = { 
+			limit = { has_trait = natural_lifespan_4 }
+			value = 4
+		}
+	}
+	else = {
+		if = {
+			limit = { has_trait = lifespan_1 }
+			value = 1
+		}
+		else_if = { 
+			limit = { has_trait = lifespan_2 }
+			value = 2
+		}
+		else_if = { 
+			limit = { has_trait = lifespan_3 }
+			value = 3
+		}
+		else_if = { 
+			limit = { has_trait = lifespan_4 }
+			value = 4
+		}
+	}
+}
