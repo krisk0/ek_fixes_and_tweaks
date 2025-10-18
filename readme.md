@@ -52,7 +52,7 @@ Two conditions in bracers and explicitly ANDed, therefore the line means "don't 
 
 There is another problem the subroutine: comment `3 + 3 = 3 or 2 or 4` is out-of-sync with code: life3+life3 results in either life3 or life4, not life2.
 
-Thus the subroutine has multiple problems, so I reimplemented it, following comments like `3 + 3 = …`, and keeping chances found in random_list blocks. File name: `common/scripted_effects/lifespan_traits_inheritance.txt`. My code is a lot shorter (172+39 visus 719), because I pre-calculate two numbers in range 0…4 and only then give longevity gene.
+Thus the subroutine has multiple problems, so I reimplemented it, following comments like `3 + 3 = …`, and keeping chances found in random_list blocks. File name: `common/scripted_effects/lifespan_traits_inheritance.txt`. My code is a lot shorter (181+39 visus 719), because I pre-calculate two numbers in range 0…4 and only then give longevity gene.
 
 ## Gameplay changes
 

@@ -5,11 +5,23 @@
 lifespan_traits_inheritance_effect = {
 	set_local_variable = {
 		name = m_span
-		value = scope:mother.ek_lifespan_no
+		value = 0
+	}
+	scope:mother ?= {
+		set_local_variable = {
+			name = m_span
+			value = ek_lifespan_no
+		}
 	}
 	set_local_variable = {
 		name = f_span
-		value = scope:real_father.ek_lifespan_no
+		value = 0
+	}
+	scope:real_father ?= {
+		set_local_variable = {
+			name = f_span
+			value = ek_lifespan_no
+		}
 	}
 	if = {
 		limit = { local_var:m_span > local_var:f_span }
