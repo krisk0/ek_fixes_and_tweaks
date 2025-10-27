@@ -14,8 +14,8 @@ I hate to write this, but some cites including [nexus](nexusmods.com) require th
 
 ## Technical requirements
 
-* Game version 1.17.0.1.
-* Elder Kings modification version 0.16.3.1.
+* Game version 1.17.1.
+* Elder Kings modification version 0.17.0.
 * To handle increased birth-rate, a very good computer is required.
 
 **This is not a joke. If you want many children, upgrade your computer first.**
@@ -30,35 +30,27 @@ Send bugreports and suggestions via github. If you found the mod elsewhere, you 
 
 ## Interface changes
 
-* `window_character.gui` changes main character window so fertility is displayed next to age. As a bonus, some whitespace at end-of-line was removed. File path: `ek_fixes_and_tweaks/gui/window_character.gui`.
+* `window_character.gui` changes main character window so fertility is displayed next to age. As a bonus, some whitespace at end-of-line was removed. File path: `gui/window_character.gui`.
 
 ## Bug fixes
 
 * File `ek_yearly_events.txt`, event `ek_yearly_events.0138` contains unreachable code that is supposed to heal from lovers pox: `remove_trait = lovers_pox`.
-To really enable the cure, one line was added to precondition trigger. As a bonus, some whitespace at end-of-line was removed. File path: `ek_fixes_and_tweaks/events/ek_yearly_events.txt`.
-* `ep1_achievements.txt` has erroneous and incorrectly formatted code that spams `error.log` with messages
-```
-  Error: Invalid right side during comparison 'previous_holder'
-  Script location: file: common/achievements/ep1_achievements.txt line: 235 (ep1_18_chievement)
-```
-This is a bug in base game in event `ep1_18_achievement`, inherited by Elder Kings. I added an extra check that appear to fix the bug. As a bonus, I fixed formatting. File path: `common/achievements/ep1_achievements.txt`.
-
-Two bugs described above are also seen in version 0.15.1. They survived two versions change: 0.15.1 → 0.16.2.1 → 0.16.3.1. EK team, is it not time to fix?
+To really enable the cure, one line was added to precondition trigger. As a bonus, some whitespace at end-of-line was removed. File path: `events/ek_yearly_events.txt`.
 * `lifespan_traits_inheritance_effect` has two strange `NOT = { … }` blocks with two condifions inside:
 ```
 NOT = { has_trait = lifespan_1 has_trait = lifespan_2 }
 ```
 Two conditions in bracers and explicitly ANDed, therefore the line means "don't have both life1 and life2". Thus the line evaluates `yes` for all characters. Obviously code author meant something else.
 
-There is another problem the subroutine: comment `3 + 3 = 3 or 2 or 4` is out-of-sync with code: life3+life3 results in either life3 or life4, not life2.
+The subroutine has other problem: comment `3 + 3 = 3 or 2 or 4` mismatches code. Code analysis reveals that it should have been `3 + 3 = 3 or 4`.
 
-Thus the subroutine has multiple problems, so I reimplemented it, following comments like `3 + 3 = …`, and keeping chances found in random_list blocks. File name: `common/scripted_effects/lifespan_traits_inheritance.txt`. My code is a lot shorter (181+39 visus 719), because I pre-calculate two numbers in range 0…4 and only then give longevity gene.
+I reimplemented the subroutine, following comments like `3 + 3 = …`, and mostly keeping chances found in random_list blocks. File name: `common/scripted_effects/lifespan_traits_inheritance.txt` and `common/script_values/lifespan_traits_inheritance_effect.txt`. My code is a lot shorter (172+39 visus 719) and clearer, because I pre-calculate two numbers in range 0…4 representing gene level and only then produce result.
 
 ## Gameplay changes
 
-* `birth_events.txt` disables dialog that lets you change name of your distant relative at birth. Changing name of your son and daughter remains as it is. As a bonus, some whitespace at end-of-line was removed. File path: `ek_fixes_and_tweaks/events/birth_events.txt`.
-* `00_wet_nurse_tasks.txt` allows wet nurse to educate characters educated by liege as other children. In EK mod, wet nurse will not teach virtues to children educated by liege. File path: `ek_fixes_and_tweaks/common/court_positions/tasks/00_wet_nurse_tasks.txt`.
-* `cast_spell_if_max_mana.txt` improves AI spellcasting. It forces AI character to cast spell as soon as his mana pool is maximal. Note that AI spellcasting is awkward, see subsection *AI spellcasting problems* below. If you want AI to monthly check if mana is maximal and attempt to cast a spell, keep file `ek_fixes_and_tweaks/common/on_actions/cast_spell_if_max_mana.txt`.
+* `birth_events.txt` eases game: disables dialog that lets you change name of your distant relative at birth. Changing name of your son and daughter remains as it is. As a bonus, some whitespace at end-of-line was removed. File path: `events/birth_events.txt`.
+* `00_wet_nurse_tasks.txt` allows wet nurse to educate characters educated by liege as other children. In EK mod, wet nurse will not teach virtues to children educated by liege. File path: `common/court_positions/tasks/00_wet_nurse_tasks.txt`.
+* `cast_spell_if_max_mana.txt` improves AI spellcasting. It forces AI character to cast spell as soon as their mana pool is maximal. Note that AI spellcasting is awkward, see subsection *AI spellcasting problems* below. If you want AI to monthly check if mana is maximal and attempt to cast a spell, keep file `common/on_actions/cast_spell_if_max_mana.txt`.
 
 ### Motivation to change wet nurse behavior
 
@@ -69,16 +61,19 @@ Liege usually educates most important children, such as future rulers or council
 1. AI character only casts spells no more often than once per 3 years.
 2. AI does not attempt to heal child or father or councillor. They only heal self, soulmate, lovers, spouses, friends.
 3. Non-ruler AI never casts spells at all.
+4. When selecting hostile spell target, only far enough enemies can be hit — those outside spell_range. Spell range is larger for better-educated characters. So better-educated characters have less enemy targets than poorly-educated (or none at all). I think distance condition should be reverted to "near enough" (inside spell_range).
 
-Problem no. 1 is partially solved by `cast_spell_if_max_mana.txt` (see description above). To solve problem no. 3, delete all lines `is_ruler = yes` from EK file `common/scripted_effects/ek_magic_ai_effects.txt`, then add line `is_ruler = yes` where appropriate (so non-ruler character does not attempt to summon an army of undead). This requires some work.
+Problem no. 1 is partially solved by `cast_spell_if_max_mana.txt` (see description above). To solve problem no. 3, delete all lines `is_ruler = yes` from EK file `common/scripted_effects/ek_magic_ai_effects.txt`, then add line `is_ruler = yes` where appropriate (so non-ruler character does not attempt to summon an army of undead). This might bring in some problems, do it at your own risk.
+
+I did not solve problem no.4. If you feel like solving it, change `value > "root.spell_range"` to `value < "root.spell_range"` in EK file `common/scripted_effects/ek_magic_ai_effects.txt`.
 
 ## Perfomance optimization
 
-ELder Kings subroutine `add_magicka` is slower than it could be — it usually evaluates scripted value `magicka_max` twice. I created code that only evaluates the script once, is functionally equivalent, and also shorter (15 lines instead of 24 lines). If you want perfomance gain, keep file `ek_fixes_and_tweaks/common/scripted_effects/add_magicka.txt`.
+ELder Kings subroutine `add_magicka` is slower than it could be — it usually evaluates scripted value `magicka_max` twice. I created code that only evaluates the script once, is functionally equivalent, and also shorter (15 lines instead of 24 lines). If you want perfomance gain, keep file `common/scripted_effects/add_magicka.txt`.
 
 ## Parameter changes
 
-* `ek_defines.txt` removes upper limit on children of land owners; allows non-landed people to have five children; increases birthrate of concubines. There are also changes to reproduction age, but they do nothing since game engine does not allow children to have sex or get pregnant. As a bonus, some whitespace at end-of-line was removed. File path: `ek_fixes_and_tweaks/common/defines/ek_defines.txt`.
+* `ek_defines.txt` removes upper limit on children of land owners; allows non-landed people to have five children; increases impregnation probability. As a bonus, some whitespace at end-of-line was removed. File path: `common/defines/ek_defines.txt`.
 
 If you do not play on a very good computer, then do not apply the birthrate changes. You will experience a great slow-down if your computer is not top tier.
 
@@ -86,7 +81,7 @@ If you do not play on a very good computer, then do not apply the birthrate chan
 
 1. Unpack .zip.
 2. Remove `readme.md` and files you do not want installed. For instance, if you do not want to greatly slow-down your game, remove `ek_fixes_and_tweaks/common/defines/ek_defines.txt`.
-3. Copy all remaining files into `mod` directory, where you put `elder-kings-ck3.mod` file and `elder-kings-ck3` directory.
+3. Copy all remaining files into `mod` directory, where you put `elder-kings-ck3.mod` file.
 4. Activate via launcher called `dowser.exe`.
 
 For more details on manual mod installation, see [wiki](https://ck3.paradoxwikis.com/Modding#Installing_mods_manually).

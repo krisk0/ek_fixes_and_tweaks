@@ -3658,7 +3658,6 @@ ek_yearly_events.0066 = {
 	}
 
 	trigger = {
-		can_secretly_worship_vaermina = yes
 		is_adult = yes
 		is_daedric_champion = no
 		any_artifact = {
@@ -3669,13 +3668,11 @@ ek_yearly_events.0066 = {
 
 	option = { # Ver-Menevia
 		name = ek_yearly_events.0066.a
-		add_piety = medium_piety_loss
 		make_character_crypto_religionist_effect = { CRYPTO_RELIGION = faith:vaermina_cult}
 	}
 
 	option = { # Vaermina
 		name = ek_yearly_events.0066.b
-		add_piety_level = -1
 		stress_impact = { zealous = major_stress_impact_gain }
 		if = {
 			limit = {
@@ -3723,7 +3720,7 @@ ek_yearly_events.0067 = {
 	cooldown = { years = yearly_cooldown }
 
 	trigger = {
-		culture = { has_cultural_pillar = heritage_orsimeri }
+		culture = { has_cultural_pillar = heritage_orcish }
 		faith = {
 			has_doctrine = doctrine_gender_male_dominated
 			has_doctrine = doctrine_marriage_suitable_party_one_landed
@@ -3934,7 +3931,7 @@ ek_yearly_events.0069 = {
 
 	trigger = {
 		number_of_knights > 1
-		culture = { has_cultural_pillar = heritage_orsimeri }
+		culture = { has_cultural_pillar = heritage_orcish }
 	}
 
 
@@ -5207,7 +5204,7 @@ ek_yearly_events.0083 = {
 					has_cultural_pillar = heritage_cyrodiilic
 					has_cultural_pillar = heritage_nedic_central
 					has_cultural_pillar = heritage_nedic_north
-					has_cultural_pillar = heritage_nedic_south
+					has_cultural_pillar = heritage_kothri
 					has_cultural_pillar = heritage_yokudan
 				}
 			}
@@ -5235,7 +5232,7 @@ ek_yearly_events.0083 = {
 					has_cultural_pillar = heritage_cyrodiilic
 					has_cultural_pillar = heritage_nedic_central
 					has_cultural_pillar = heritage_nedic_north
-					has_cultural_pillar = heritage_nedic_south
+					has_cultural_pillar = heritage_kothri
 					has_cultural_pillar = heritage_yokudan
 				}
 			}
@@ -5259,7 +5256,7 @@ ek_yearly_events.0083 = {
 					has_cultural_pillar = heritage_cyrodiilic
 					has_cultural_pillar = heritage_nedic_central
 					has_cultural_pillar = heritage_nedic_north
-					has_cultural_pillar = heritage_nedic_south
+					has_cultural_pillar = heritage_kothri
 					has_cultural_pillar = heritage_yokudan
 				}
 			}
@@ -7559,8 +7556,8 @@ ek_yearly_events.0108 = {
 		scope:host = {
 			culture = {
 				OR = {
-					this = culture:blackwood
-					any_parent_culture_or_above = { this = culture:blackwood }
+					this = culture:nibenu
+					any_parent_culture_or_above = { this = culture:nibenu }
 					this = culture:nibenese
 					any_parent_culture_or_above = { this = culture:nibenese }
 				}
@@ -7590,8 +7587,8 @@ ek_yearly_events.0108 = {
 			ROOT = {
 				culture = {
 					OR = {
-						this = culture:blackwood
-						any_parent_culture_or_above = { this = culture:blackwood }
+						this = culture:nibenu
+						any_parent_culture_or_above = { this = culture:nibenu }
 						this = culture:nibenese
 						any_parent_culture_or_above = { this = culture:nibenese }
 					}
@@ -7616,8 +7613,8 @@ ek_yearly_events.0108 = {
 			ROOT = {
 				culture = {
 					OR = {
-						this = culture:blackwood
-						any_parent_culture_or_above = { this = culture:blackwood }
+						this = culture:nibenu
+						any_parent_culture_or_above = { this = culture:nibenu }
 						this = culture:nibenese
 						any_parent_culture_or_above = { this = culture:nibenese }
 					}
@@ -7642,8 +7639,8 @@ ek_yearly_events.0108 = {
 			ROOT = {
 				culture = {
 					OR = {
-						this = culture:blackwood
-						any_parent_culture_or_above = { this = culture:blackwood }
+						this = culture:nibenu
+						any_parent_culture_or_above = { this = culture:nibenu }
 						this = culture:nibenese
 						any_parent_culture_or_above = { this = culture:nibenese }
 					}
@@ -10149,7 +10146,7 @@ ek_yearly_events.0135 = {
 	}
 
 	immediate = {
-		character:direnni_103 = {
+		character:direnni_3b1 = {
 			save_scope_as = aiden
 		}
 	}
@@ -10738,6 +10735,7 @@ ek_yearly_events.0138 = {
 				has_trait = consumption
 				has_trait = cancer
 				has_trait = great_pox
+				has_trait = lovers_pox
 				has_trait = gout_ridden
 				has_trait = ill
 				has_trait = pneumonic
@@ -10750,7 +10748,6 @@ ek_yearly_events.0138 = {
 				has_trait = leper
 				has_trait = sanguinare_vampiris
 				has_trait = sanies_lupinus
-				has_trait = lovers_pox
 			}
 			piety >= medium_piety_value
 		}

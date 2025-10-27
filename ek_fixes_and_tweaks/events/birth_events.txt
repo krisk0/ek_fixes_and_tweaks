@@ -1176,9 +1176,9 @@ birth.1001 = {
 					culture = {
 						has_cultural_pillar = heritage_argonian
 						NOT = {
-							this = culture:lukiul
+							this = culture:ojel
 							any_parent_culture_or_above = {
-								this = culture:lukiul
+								this = culture:ojel
 							}
 						}
 					}
@@ -1193,9 +1193,9 @@ birth.1001 = {
 					culture = {
 						has_cultural_pillar = heritage_argonian
 						NOT = {
-							this = culture:lukiul
+							this = culture:ojel
 							any_parent_culture_or_above = {
-								this = culture:lukiul
+								this = culture:ojel
 							}
 						}
 					}

@@ -510,23 +510,23 @@ NHolyOrder = {
 NChildbirth = {
 
     # old setting: 12
-	MIN_REPRODUCTION_AGE_IN_HISTORY_DB = 10 # If a historical parent is younger than this when their child is born, we log an error
+	MIN_REPRODUCTION_AGE_IN_HISTORY_DB = 8 # If a historical parent is younger than this when their child is born, we log an error
 
     # old setting: 16
-	MIN_FEMALE_REPRODUCTION_AGE = 12
+	MIN_FEMALE_REPRODUCTION_AGE = 8
 	MAX_FEMALE_REPRODUCTION_AGE = 45
 
     # old setting: 16
-	MIN_MALE_REPRODUCTION_AGE = 10
+	MIN_MALE_REPRODUCTION_AGE = 8
 
     # old setting: { 1 1 2 2 3 4 }
-    BASE_NR_OF_CHILDREN_PER_COUPLE = { 5 999999 999999 999999 999999 999999 } # # Unlanded, Baron, Count, ..., Emperor
+	BASE_NR_OF_CHILDREN_PER_COUPLE = { 5 999999 999999 999999 999999 999999 } # # Unlanded, Baron, Count, ..., Emperor
 
 	CHANCE_OF_LOWERED_CHILD_LIMIT = 0.5	# Chance that the child limit is lowered by 1
 	EXTRA_CHILDREN_FOR_RULERS = 1 # If either character is a ruler, they get extra children
 
     # old setting: -1
-	CHARACTER_IN_POOL_CHILD_LIMIT = 0	# If in the pool, child limit is modified by this
+	CHARACTER_IN_POOL_CHILD_LIMIT = 999999	# If in the pool, child limit is modified by this
 
 	CHILD_BIRTH_TO_PREGNANCY_WAIT = 3
 	MALE_FERTILITY_MULTIPLIER_LIMITS = { 70 60 50 40 35 } # Ages where fertility multiplier is applied 25 means up to 25, needs to be sorted in descending order
