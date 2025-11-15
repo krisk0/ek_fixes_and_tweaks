@@ -48,7 +48,7 @@ I reimplemented the subroutine, following comments like `3 + 3 = …`, and mostl
 
 ## Gameplay changes
 
-* `birth_events.txt` eases game: disables dialog that lets you change name of your distant relative at birth. Changing name of your son and daughter remains as it is. As a bonus, some whitespace at end-of-line was removed. File path: `events/birth_events.txt`.
+* `birth_events_trigger.txt` eases game: disables dialog that lets you change name of your distant relative at birth. Changing name of your son and daughter remains as it is. File path: `/common/scripted_triggers/birth_events_trigger.txt`.
 * `00_wet_nurse_tasks.txt` allows wet nurse to educate characters educated by liege as other children. In EK mod, wet nurse will not teach virtues to children educated by liege. File path: `common/court_positions/tasks/00_wet_nurse_tasks.txt`.
 * `cast_spell_if_max_mana.txt` improves AI spellcasting. It forces AI character to cast spell as soon as their mana pool is maximal. Note that AI spellcasting is awkward, see subsection *AI spellcasting problems* below. If you want AI to monthly check if mana is maximal and attempt to cast a spell, keep file `common/on_actions/cast_spell_if_max_mana.txt`.
 
@@ -67,9 +67,9 @@ Problem no. 1 is partially solved by `cast_spell_if_max_mana.txt` (see descripti
 
 I did not solve problem no.4. If you feel like solving it, change `value > "root.spell_range"` to `value < "root.spell_range"` in EK file `common/scripted_effects/ek_magic_ai_effects.txt`.
 
-## Perfomance optimization
+## Performance optimization
 
-ELder Kings subroutine `add_magicka` is slower than it could be — it usually evaluates scripted value `magicka_max` twice. I created code that only evaluates the script once, is functionally equivalent, and also shorter (15 lines instead of 24 lines). If you want perfomance gain, keep file `common/scripted_effects/add_magicka.txt`.
+ELder Kings subroutine `add_magicka` is slower than it could be — it usually evaluates scripted value `magicka_max` twice. I created code that only evaluates the script once, is functionally equivalent, and also shorter (15 lines instead of 24 lines). If you want performance gain, keep file `common/scripted_effects/add_magicka.txt`.
 
 ## Parameter changes
 
