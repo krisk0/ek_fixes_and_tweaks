@@ -1,17 +1,17 @@
 ﻿# With increased babies count, child naming becomes tedious. Disable the dialog
 #  unless the $CHILD$ is your son or daughter.
 allow_naming_on_birth_of_child_trigger = {
-	save_temporary_scope_as = naming_parent
+	# ek_fixes_and_tweaks changes start
 	exists = $CHILD$
 	is_ai = no
-	# ek_fixes_and_tweaks changes start
+	save_temporary_scope_as = naming_parent
 	$CHILD$ = {
 		any_parent = {
 			this = scope:naming_parent
 		}
 	}
 	#is_close_family_of = $CHILD$ — disabled, too many of them
-	# ek_fixes_and_tweaks changes start
+	# ek_fixes_and_tweaks changes end
 	
 	### EK EDIT: Argonian Hatchlings
 	# Argonian kiddos are named 'Hatchlings' and only take a full name once they reach adulthood
