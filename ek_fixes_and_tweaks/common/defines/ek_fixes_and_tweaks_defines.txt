@@ -1,0 +1,44 @@
+﻿# This file name should not collide with other defines. For instance, the file cannot be named ek_defines.txt.
+
+NChildbirth = {
+
+	# old setting: 12
+	MIN_REPRODUCTION_AGE_IN_HISTORY_DB = 8 # If a historical parent is younger than this when their child is born, we log an error
+
+	# old setting: 16
+	MIN_FEMALE_REPRODUCTION_AGE = 8
+	MAX_FEMALE_REPRODUCTION_AGE = 45 # Game engine calculates the end of fertility as: MAX_FEMALE_REPRODUCTION_AGE + years_of_fertility
+
+	# old setting: 16
+	MIN_MALE_REPRODUCTION_AGE = 8
+
+	# old setting: { 1 1 2 3 5 5 8 }
+	BASE_NR_OF_CHILDREN_PER_COUPLE = { 5 999999 999999 999999 999999 999999 999999 } # # Unlanded, Baron, Count, ..., Emperor, Hegemon
+
+	# old setting: -1
+	CHARACTER_IN_POOL_CHILD_LIMIT = 0	# If in the pool, child limit is modified by this
+
+	# old setting 0.5
+	SECONDARY_SPOUSE_FERTILITY_MULTIPLIER = 0.95
+
+	# old setting 0.5
+	CONCUBINE_FERTILITY_MULTIPLIER = 0.95
+
+	NOT_SPOUSE_FERTILITY_MULTIPLIER = 1
+	NON_RULER_FERTILITY_MULTIPLIER = 0.85	# If neither parent is a ruler, resulting fertility gets multiplied by this
+
+	# old setting 4.75
+	FERTILITY_CHANCE_MULTIPLIER = 50 # Fertility is an average between the father and the mother (if the mother has 0.3 and the father 0.5, the average is 0.4), this number is then multiplied by this multiplier to produce the percentage chance of impregnation. Impregnation is checked every month.
+
+	# old setting 25
+	MAX_FERTILITY_CHANCE = 100
+
+	# old setting 1
+	DIVINE_MARRIAGE_FERTILITY_MULTIPLIER = 1.5 # Multiplier if the couple is close or extended family and their faith allows divine marriage
+
+	# old setting 0.9
+	CLOSE_FAMILY_FERTILITY_MULTIPLIER = 1 # Multiplier if the couple is close family and their faith does not allow divine marriage
+
+	# old setting 0.25
+	FERTILITY_IN_POOL_MULTIPLIER = 1	# Characters in the pool will have their fertility multiplied by this
+}

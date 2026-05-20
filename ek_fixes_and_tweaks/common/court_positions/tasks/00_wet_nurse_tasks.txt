@@ -50,24 +50,23 @@ wet_nurse_instill_virtue = {
 					instill_virtue_trait_effect = yes
 				}
 			}
-		}
-		# EK ADDITION: account for Clan Mother
-		scope:notification_character = {
-			every_courtier_or_guest = {
+			if = {
 				limit = {
 					is_adult = no
-					age >= 6
 					number_of_personality_traits < 3
-					trigger_if = {
-						limit = {
-							any_relation = { type = guardian }
-						}
-						any_relation = {
-							type = guardian
-							NOT = { this = scope:notification_character }
+					age >= 6
+				}
+				random = {
+					chance = {
+						value = 1
+						add = {
+							value = "scope:wetnurse_trait_giver.aptitude(court_tutor_court_position)"
+							multiply = 1.5
 						}
 					}
+					instill_virtue_trait_effect = yes
 				}
+				# EK ADDITION: account for Clan Mother
 				random = {
 					chance = {
 						value = 1
@@ -78,23 +77,7 @@ wet_nurse_instill_virtue = {
 					}
 					instill_virtue_trait_effect = yes
 				}
-			}
-		}
-		# EK ADDITION END
-		if = {
-			limit = {
-				is_adult = no
-				number_of_personality_traits < 3
-			}
-			random = {
-				chance = {
-					value = 1
-					add = {
-						value = "scope:wetnurse_trait_giver.aptitude(court_tutor_court_position)"
-						multiply = 1.5
-					}
-				}
-				instill_virtue_trait_effect = yes
+				#EK ADDITION END
 			}
 		}
 	}

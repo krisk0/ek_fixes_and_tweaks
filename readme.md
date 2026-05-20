@@ -14,11 +14,13 @@ I hate to write this, but some cites including [nexus](nexusmods.com) require th
 
 ## Technical requirements
 
-* Game version 1.17.1.
-* Elder Kings modification version 0.17.0.
+* Game version 1.18.* (I only tested 1.18.4).
+* Elder Kings modification version 0.18.0.2.
 * To handle increased birth-rate, a very good computer is required.
 
 **This is not a joke. If you want many children, upgrade your computer first.**
+
+If you are still playing an older version of EK2, the [repository](https://github.com/krisk0/ek_fixes_and_tweaks/) might contain a fix. To get it, go back in git history. Sorry for inconvenience.
 
 ## Language support
 
@@ -40,17 +42,17 @@ To really enable the cure, one line was added to precondition trigger. As a bonu
 ```
 NOT = { has_trait = lifespan_1 has_trait = lifespan_2 }
 ```
-Two conditions in bracers and explicitly ANDed, therefore the line means "don't have both life1 and life2". Thus the line evaluates `yes` for all characters. Obviously code author meant something else.
+Two conditions in bracers and explicitly ANDed, therefore the line means "don't have both life1 and life2". Thus the line evaluates `yes` for all characters. This is either a bug or obfucscation, most probably bug.
 
 The subroutine has other problem: comment `3 + 3 = 3 or 2 or 4` mismatches code. Code analysis reveals that it should have been `3 + 3 = 3 or 4`.
 
-I reimplemented the subroutine, following comments like `3 + 3 = …`, and mostly keeping chances found in random_list blocks. File name: `common/scripted_effects/lifespan_traits_inheritance.txt` and `common/script_values/lifespan_traits_inheritance_effect.txt`. My code is a lot shorter (172+39 visus 719) and clearer, because I pre-calculate two numbers in range 0…4 representing gene level and only then produce result.
+I reimplemented the subroutine, following comments like `3 + 3 = …`, and mostly keeping chances found in random_list blocks. File path: `common/scripted_effects/lifespan_traits_inheritance.txt` and `common/script_values/lifespan_traits_inheritance_effect.txt`. My code is a lot shorter (172+39 visus 719) and clearer, because I pre-calculate two numbers in range 0…4 representing gene level and only then produce result.
 
 ## Gameplay changes
 
-* `birth_events_trigger.txt` eases game: disables dialog that lets you change name of your distant relative at birth. Changing name of your son and daughter remains as it is. File path: `/common/scripted_triggers/birth_events_trigger.txt`.
+* `birth_events_trigger.txt` eases game: disables dialog that lets you change name of your distant relative at birth. Changing name of your son and daughter remains as it is. File path: `common/scripted_triggers/birth_events_trigger.txt`.
 * `00_wet_nurse_tasks.txt` allows wet nurse to educate characters educated by liege as other children. In EK mod, wet nurse will not teach virtues to children educated by liege. File path: `common/court_positions/tasks/00_wet_nurse_tasks.txt`.
-* `cast_spell_if_max_mana.txt` improves AI spellcasting. It forces AI character to cast spell as soon as their mana pool is maximal. Note that AI spellcasting is awkward, see subsection *AI spellcasting problems* below. If you want AI to monthly check if mana is maximal and attempt to cast a spell, keep file `common/on_actions/cast_spell_if_max_mana.txt`.
+* `cast_spell_if_max_mana.txt` improves AI spellcasting. It forces AI character to cast a spell as soon as their mana pool is maximal. Note that AI spellcasting is awkward, see subsection *AI spellcasting problems* below. If you want AI to monthly check if mana is maximal and attempt to cast a spell, keep file `common/on_actions/cast_spell_if_max_mana.txt`.
 
 ### Motivation to change wet nurse behavior
 
@@ -73,14 +75,14 @@ ELder Kings subroutine `add_magicka` is slower than it could be — it usually e
 
 ## Parameter changes
 
-* `ek_defines.txt` removes upper limit on children of land owners; allows non-landed people to have five children; increases impregnation probability. As a bonus, some whitespace at end-of-line was removed. File path: `common/defines/ek_defines.txt`.
+* `.txt` removes upper limit on children of land owners; allows non-landed people to have five children; increases impregnation probability. File path: `common/defines/ek_fixes_and_tweaks_defines.txt`.
 
 If you do not play on a very good computer, then do not apply the birthrate changes. You will experience a great slow-down if your computer is not top tier.
 
 ## Installation
 
 1. Unpack .zip.
-2. Remove `readme.md` and files you do not want installed. For instance, if you do not want to greatly slow-down your game, remove `ek_fixes_and_tweaks/common/defines/ek_defines.txt`.
+2. Remove `readme.md` and files you do not want installed. For instance, if you do not want to greatly slow-down your game, remove or modify `ek_fixes_and_tweaks/common/defines/ek_fixes_and_tweaks_defines.txt`.
 3. Copy all remaining files into `mod` directory, where you put `elder-kings-ck3.mod` file.
 4. Activate via launcher called `dowser.exe`.
 

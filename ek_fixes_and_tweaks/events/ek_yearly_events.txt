@@ -3616,7 +3616,7 @@ ek_yearly_events.0066 = {
 		}
 		modifier = {
 			add = 0.2
-			has_trait = poet
+			has_trait = lifestyle_poet
 		}
 		modifier = {
 			add = 0.2
@@ -4110,7 +4110,7 @@ ek_yearly_events.0072 = {
 			has_trait = shy
 		}
 		AND = {
-			has_trait = poet
+			has_trait = lifestyle_poet
 			culture = { has_cultural_pillar = heritage_atmoran }
 		}
 	}
@@ -5197,17 +5197,7 @@ ek_yearly_events.0083 = {
 	option = { # Bravo!
 		name = ek_yearly_events.0083.a
 		trigger = {
-			culture = {
-				NOT = {
-					has_cultural_pillar = heritage_atmoran
-					has_cultural_pillar = heritage_breton
-					has_cultural_pillar = heritage_cyrodiilic
-					has_cultural_pillar = heritage_nedic_central
-					has_cultural_pillar = heritage_nedic_north
-					has_cultural_pillar = heritage_kothri
-					has_cultural_pillar = heritage_yokudan
-				}
-			}
+			is_human_character = no
 		}
 		small_praxis_increase_effect = yes
 		add_character_modifier = {
@@ -5225,17 +5215,7 @@ ek_yearly_events.0083 = {
 	option = { # rather not
 		name = ek_yearly_events.0083.b
 		trigger = {
-			culture = {
-				NOT = {
-					has_cultural_pillar = heritage_atmoran
-					has_cultural_pillar = heritage_breton
-					has_cultural_pillar = heritage_cyrodiilic
-					has_cultural_pillar = heritage_nedic_central
-					has_cultural_pillar = heritage_nedic_north
-					has_cultural_pillar = heritage_kothri
-					has_cultural_pillar = heritage_yokudan
-				}
-			}
+			is_human_character = no
 		}
 
 		stress_impact = {
@@ -5249,17 +5229,7 @@ ek_yearly_events.0083 = {
 	option = { # holy shit
 		name = ek_yearly_events.0083.c
 		trigger = {
-			culture = {
-				OR = {
-					has_cultural_pillar = heritage_atmoran
-					has_cultural_pillar = heritage_breton
-					has_cultural_pillar = heritage_cyrodiilic
-					has_cultural_pillar = heritage_nedic_central
-					has_cultural_pillar = heritage_nedic_north
-					has_cultural_pillar = heritage_kothri
-					has_cultural_pillar = heritage_yokudan
-				}
-			}
+			is_human_character = yes
 		}
 
 		random_list = {
@@ -6286,9 +6256,9 @@ ek_yearly_events.0094 = {
 			}
 			if = {
 				limit = {
-					NOT = { has_trait = poet }
+					NOT = { has_trait = lifestyle_poet }
 				}
-				add_trait = poet
+				add_trait = lifestyle_poet
 			}
 			else = { add_prestige = medium_prestige_gain }
 		}
@@ -7343,7 +7313,7 @@ ek_yearly_events.0105 = {
 	trigger = {
 		NOT = {	culture = { has_cultural_pillar = heritage_goblinken } }
 		scope:host = {
-			culture = { has_cultural_pillar = heritage_nedic_north }
+			culture = { has_cultural_tradition = tradition_reach_core }
 		}
 	}
 
@@ -7356,7 +7326,7 @@ ek_yearly_events.0105 = {
 	option = { # fuck yeah faolan
 		name = ek_yearly_events.0105.a
 		trigger = {
-			culture = { has_cultural_pillar = heritage_nedic_north }
+			culture = { has_cultural_tradition = tradition_reach_core }
 		}
 		add_prestige = medium_prestige_gain
 		# EK TODO: trigger briarheart events through here as well
@@ -7375,7 +7345,7 @@ ek_yearly_events.0105 = {
 	option = { # wtf
 		name = ek_yearly_events.0105.b
 		trigger = {
-			culture = { NOT = { has_cultural_pillar = heritage_nedic_north } }
+			culture = { NOT = { has_cultural_tradition = tradition_reach_core } }
 		}
 
 		stress_impact = {
@@ -10735,12 +10705,12 @@ ek_yearly_events.0138 = {
 				has_trait = consumption
 				has_trait = cancer
 				has_trait = great_pox
-				has_trait = lovers_pox
 				has_trait = gout_ridden
 				has_trait = ill
 				has_trait = pneumonic
 				has_trait = typhus
 				has_trait = smallpox
+				has_trait = lovers_pox
 				has_trait = measles
 				has_trait = dysentery
 				has_trait = ergotism
@@ -11358,7 +11328,7 @@ ek_yearly_events.0147 = {
 	}
 
 	immediate = {
-		character:nisewan_100 = {
+		character:nisewan_1 = {
 			save_scope_as = yaghoub
 		}
 	}
@@ -11854,9 +11824,7 @@ ek_yearly_events.0154 = {
 		is_available_travelling_adult = yes
 		is_landed = yes
 		is_location_valid_for_travel_event_on_land = yes
-		location.county = {
-			culture = { has_innovation = innovation_native_alikr }
-		}
+		location.county = { culture = { has_cultural_tradition = tradition_alikr_core } }
 	}
 
 	immediate = {
@@ -11894,7 +11862,7 @@ ek_yearly_events.0155 = {
 		is_landed = yes
 		is_location_valid_for_travel_event_on_land = yes
 		location.county = {
-			this = title:c_ayasofya
+			this = title:c_ayafa
 			culture = {
 				has_cultural_pillar = heritage_yokudan
 			}
@@ -13370,7 +13338,7 @@ ek_yearly_events.0177 = {
 	cooldown = { years = yearly_cooldown }
 
 	trigger = {
-		has_trait = poet
+		has_trait = lifestyle_poet
 	}
 
 	option = { # try harder
