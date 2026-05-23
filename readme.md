@@ -75,7 +75,7 @@ ELder Kings subroutine `add_magicka` is slower than it could be — it usually e
 
 ## Parameter changes
 
-* `.txt` removes upper limit on children of land owners; allows non-landed people to have five children; increases impregnation probability. File path: `common/defines/ek_fixes_and_tweaks_defines.txt`.
+* remove upper limit on children of land owners; allows non-landed people to have five children; increases impregnation probability. File path: `common/defines/ek_fixes_and_tweaks_defines.txt`.
 
 If you do not play on a very good computer, then do not apply the birthrate changes. You will experience a great slow-down if your computer is not top tier.
 
