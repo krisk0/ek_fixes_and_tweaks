@@ -73,6 +73,12 @@ I did not solve problem no.4. If you feel like solving it, change `value > "root
 
 ELder Kings subroutine `add_magicka` is slower than it could be — it usually evaluates scripted value `magicka_max` twice. I created code that only evaluates the script once, is functionally equivalent, and also shorter (15 lines instead of 24 lines). If you want performance gain, keep file `common/scripted_effects/add_magicka.txt`.
 
+## Unsolved problems
+
+Besides bugs with magic range described above, I experienced bug with decision `Convert Cathedral of the Golden Path`. This decision probably does nothing and only eats my mana. At least I did not notice any good effect and was able to run this decision again and again burning 500 mana each time.
+
+I do not know how to fix this. I suggest that you do not use the decision.
+
 ## Parameter changes
 
 * remove upper limit on children of land owners; allows non-landed people to have five children; increases impregnation probability. File path: `common/defines/ek_fixes_and_tweaks_defines.txt`.
