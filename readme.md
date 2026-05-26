@@ -75,7 +75,11 @@ ELder Kings subroutine `add_magicka` is slower than it could be — it usually e
 
 ## Unsolved problems
 
-Besides bugs with magic range described above, I experienced bug with decision `Convert Cathedral of the Golden Path`. This decision probably does nothing and only eats my mana. At least I did not notice any good effect and was able to run this decision again and again burning 500 mana each time.
+* Strange condition `distance > spell range` (see previous section).
+
+* Decision `Convert Cathedral of the Golden Path` is probably broken.
+
+The decision probably does nothing and only eats mana. At least I did not notice any good effect and was able to run this decision again and again burning 500 mana each time.
 
 I do not know how to fix this. I suggest that you do not use the decision.
 
