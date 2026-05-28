@@ -50,9 +50,17 @@ I reimplemented the subroutine, following comments like `3 + 3 = …`, and mostl
 
 ## Gameplay changes
 
-* `birth_events_trigger.txt` eases game: disables dialog that lets you change name of your distant relative at birth. Changing name of your son and daughter remains as it is. File path: `common/scripted_triggers/birth_events_trigger.txt`.
 * `00_wet_nurse_tasks.txt` allows wet nurse to educate characters educated by liege as other children. In EK mod, wet nurse will not teach virtues to children educated by liege. File path: `common/court_positions/tasks/00_wet_nurse_tasks.txt`.
 * `cast_spell_if_max_mana.txt` improves AI spellcasting. It forces AI character to cast a spell as soon as their mana pool is maximal. Note that AI spellcasting is awkward, see subsection *AI spellcasting problems* below. If you want AI to monthly check if mana is maximal and attempt to cast a spell, keep file `common/on_actions/cast_spell_if_max_mana.txt`.
+* Epidemic would not start at all if you are playing tutorial (which is impossible because tutorial is not implemented in EK as far as I know). Epidemic will not start in your lands if global variable `start_epidemic_grace` is set (which is unfair). If you agree with me that player land protection from epidemic is unfair, remove all blocks of code from file `common/script_values/06_ce1_epidemics_values.txt` from installed EK mod that look like:
+```
+	if = {
+		limit = {
+			OR = {
+				has_global_variable = is_in_tutorial
+        …
+    }
+```
 
 ### Motivation to change wet nurse behavior
 
