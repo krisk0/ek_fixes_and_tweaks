@@ -6,12 +6,6 @@ Includes changes to interface, gameplay, parameters; bug fixes. You decide wheth
 
 Primary location of this project is [on github](https://github.com/krisk0/ek_fixes_and_tweaks/). Visit it to see if a new version is available.
 
-## Legal notice
-
-As there is no license file attached to this modification, it is public domain.
-
-I hate to write this, but some cites including [nexus](nexusmods.com) require that other people's code can only be published with special permission. **I hereby allow you to publish anywhere code created by me found in this repository**. Don't forget to mention me in comments, like `# vampire bite event by krisk0` or `# inspired by krisk0's court_policy_whatever_effect`.
-
 ## Technical requirements
 
 * Game version 1.18.* (I only tested 1.18.4).
@@ -24,7 +18,7 @@ If you are still playing an older version of EK2, the [repository](https://githu
 
 ## Language support
 
-This mod does not add any user-visible strings. Thus, all languages all supported.
+If you install all files, only English is supported. If you however do not install my changes of convert-to-vampire scheme, all languages are support.
 
 ## Bugs
 
@@ -47,6 +41,7 @@ Two conditions in bracers and explicitly ANDed, therefore the line means "don't 
 The subroutine has other problem: comment `3 + 3 = 3 or 2 or 4` mismatches code. Code analysis reveals that it should have been `3 + 3 = 3 or 4`.
 
 I reimplemented the subroutine, following comments like `3 + 3 = …`, and mostly keeping chances found in random_list blocks. File path: `common/scripted_effects/lifespan_traits_inheritance.txt` and `common/script_values/lifespan_traits_inheritance_effect.txt`. My code is a lot shorter (172+39 visus 719) and clearer, because I pre-calculate two numbers in range 0…4 representing gene level and only then produce result.
+* Success chance for convert to vampire scheme is miscalculated. It always discriminates religiously inclined characters. Suppose for instance, that Harkon is converting his zealous courtier, both believe that vampirism is a blessing. Success chance will get down, the more godly the courtier is, and -50 malus will be applied for zealous trait, completely ignoring faith tenets. File path: `common/schemes/scheme_types/ek_convert_to_vampire_scheme.txt` and `localization/`.
 
 ## Gameplay changes
 
@@ -61,6 +56,7 @@ I reimplemented the subroutine, following comments like `3 + 3 = …`, and mostl
         …
     }
 ```
+* After failed vampire conversion, next attempt can only happen in 20 years. If you feel it is too long, replace lines `days = 7300` with something like `days = 1825` in file `events/ek_transformation.txt`.
 
 ### Motivation to change wet nurse behavior
 
@@ -70,12 +66,14 @@ Liege usually educates most important children, such as future rulers or council
 
 1. AI character only casts spells no more often than once per 3 years.
 2. AI does not attempt to heal child or father or councillor. They only heal self, soulmate, lovers, spouses, friends.
-3. Non-ruler AI never casts spells at all.
-4. When selecting hostile spell target, only far enough enemies can be hit — those outside spell_range. Spell range is larger for better-educated characters. So better-educated characters have less enemy targets than poorly-educated (or none at all). I think distance condition should be reverted to "near enough" (inside spell_range).
+3. When selecting hostile spell target, only far enough enemies can be hit — those outside spell_range. Spell range is larger for better-educated characters. So better-educated characters have less enemy targets than poorly-educated (or none at all). I think distance condition should be reverted to "near enough" (inside spell_range).
+4. AI do not prioritize healing. If for instance an AI character has a healthy soulmate and terribly wounded friend, there is no chance to heal friend. Spell choice is completely random.
 
-Problem no. 1 is partially solved by `cast_spell_if_max_mana.txt` (see description above). To solve problem no. 3, delete all lines `is_ruler = yes` from EK file `common/scripted_effects/ek_magic_ai_effects.txt`, then add line `is_ruler = yes` where appropriate (so non-ruler character does not attempt to summon an army of undead). This might bring in some problems, do it at your own risk.
+Problem no. 1 is partially solved by `common/on_actions/cast_spell_if_max_mana.txt` (see description above).
 
-I did not solve problem no.4. If you feel like solving it, change `value > "root.spell_range"` to `value < "root.spell_range"` in EK file `common/scripted_effects/ek_magic_ai_effects.txt`.
+To solve problem no.3, change `value > "root.spell_range"` to `value < "root.spell_range"` in EK file `common/scripted_effects/ek_magic_ai_effects.txt`.
+
+To solve problem no.4, major changes are required.
 
 ## Performance optimization
 
@@ -104,7 +102,7 @@ If you do not play on a very good computer, then do not apply the birthrate chan
 3. Copy all remaining files into `mod` directory, where you put `elder-kings-ck3.mod` file.
 4. Activate via launcher called `dowser.exe`.
 
-For more details on manual mod installation, see [wiki](https://ck3.paradoxwikis.com/Modding#Installing_mods_manually).
+For more details on mod installation, see [wiki](https://ck3.paradoxwikis.com/Modding#Installing_mods_manually).
 
 ## Note to Elder Kings team
 

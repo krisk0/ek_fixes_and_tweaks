@@ -1,0 +1,4 @@
+﻿l_english:
+ SCHEME_OLD_ENOUGH "[target.GetShortUIName]'s best years are over: $VALUE|0=-+$"
+ SCHEME_GODLY_BONUS "[target.GetShortUIName]'s religious fervor: $VALUE|0=-+$"
+ SCHEME_AFRAID_OF_ILLNESS "[target.GetShortUIName] is afraid of epidemy: $VALUE|0=-+$"
