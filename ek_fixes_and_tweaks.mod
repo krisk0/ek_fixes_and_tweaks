@@ -1,7 +1,7 @@
-version="1.0"
+version="1.18"
 tags={
 	"Fixes"
 }
-name="EK fixes and tweaks"
-supported_version="1.17.*"
+name="EK Fixes and Tweaks"
+supported_version="1.18.*"
 path="mod/ek_fixes_and_tweaks/"
