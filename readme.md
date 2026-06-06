@@ -1,4 +1,4 @@
-# Elder Kings fixes and tweaks
+# Elder Kings Fixes and Tweaks
 
 This is a modular modification of Elder Kings modification of Crusader Kings game.
 
@@ -18,7 +18,7 @@ If you are still playing an older version of EK2, the [repository](https://githu
 
 ## Language support
 
-If you install all files, only English is supported. If you however do not install my changes of convert-to-vampire scheme, all languages are support.
+If you install all files, only English is supported. If you however do not install my changes of convert-to-vampire scheme, all languages are supported.
 
 ## Bugs
 
