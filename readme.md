@@ -32,7 +32,7 @@ Send bugreports and suggestions via github. If you found the mod elsewhere, you 
 
 * File `ek_yearly_events.txt`, event `ek_yearly_events.0138` contains unreachable code that is supposed to heal from lovers pox: `remove_trait = lovers_pox`.
 To really enable the cure, one line was added to precondition trigger. As a bonus, some whitespace at end-of-line was removed. File path: `events/ek_yearly_events.txt`.
-* `lifespan_traits_inheritance_effect` has two strange `NOT = { … }` blocks with two condifions inside:
+* `lifespan_traits_inheritance_effect` has strange `NOT = { … }` blocks with two condifions inside:
 ```
 NOT = { has_trait = lifespan_1 has_trait = lifespan_2 }
 ```
@@ -47,7 +47,7 @@ I reimplemented the subroutine, following comments like `3 + 3 = …`, and mostl
 
 * `00_wet_nurse_tasks.txt` allows wet nurse to educate characters educated by liege as other children. In EK mod, wet nurse will not teach virtues to children educated by liege. File path: `common/court_positions/tasks/00_wet_nurse_tasks.txt`.
 * `cast_spell_if_max_mana.txt` improves AI spellcasting. It forces AI character to cast a spell as soon as their mana pool is maximal. Note that AI spellcasting is awkward, see subsection *AI spellcasting problems* below. If you want AI to monthly check if mana is maximal and attempt to cast a spell, keep file `common/on_actions/cast_spell_if_max_mana.txt`.
-* Epidemic would not start at all if you are playing tutorial (which is impossible because tutorial is not implemented in EK as far as I know). Epidemic will not start in your lands if global variable `start_epidemic_grace` is set (which is unfair). If you agree with me that player land protection from epidemic is unfair, remove all blocks of code from file `common/script_values/06_ce1_epidemics_values.txt` from installed EK mod that look like:
+* Epidemic would not start at all if you are playing tutorial. Epidemic would not start in your lands if global variable `start_epidemic_grace` is set, which is unfair) If you agree with me that player land protection from epidemic is unfair, and do not mind epidemic dusting tutorial, remove all blocks of code from file `common/script_values/06_ce1_epidemics_values.txt` from installed EK mod that look like:
 ```
 	if = {
 		limit = {
