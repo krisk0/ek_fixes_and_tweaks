@@ -97,14 +97,14 @@ convert_to_vampire = {
 		modifier = {
 			add = {
 				if = {
-					limit = scope:target.faith = {
-						trait_is_virtue = vampire_character
+					limit = { 
+						scope:target.faith = { trait_is_virtue = vampire_character }
 					}
 					value = 0.5
 				}
 				else_if = {
-					limit = scope:target.faith = {
-						has_doctrine_parameter = vampirism_accepted
+					limit = {
+						scope:target.faith = { has_doctrine_parameter = vampirism_accepted }
 					}
 					value = 0.25
 				}
