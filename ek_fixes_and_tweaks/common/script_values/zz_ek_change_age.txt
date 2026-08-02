@@ -1,0 +1,12 @@
+﻿# Original code often calls ek_human_age_equivalent_calc twice. Code below is
+#  functionally equivalent, shorter and free from the defect
+ek_human_age_equivalent = {
+	if = {
+		limit = { age > 18 }
+		value = ek_human_age_equivalent_calc
+		min = 18
+	}
+	else = {
+		value = age
+	}
+}

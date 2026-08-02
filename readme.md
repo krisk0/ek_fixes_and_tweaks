@@ -14,11 +14,13 @@ Primary location of this project is [on github](https://github.com/krisk0/ek_fix
 
 **This is not a joke. If you want many children, upgrade your computer first.**
 
+As of spring 2026, AMD 9800X3D is the only off-the-shelf CPU for CK3 game with vast amount of characters and scripts.
+
 If you are still playing an older version of EK2, the [repository](https://github.com/krisk0/ek_fixes_and_tweaks/) might contain a fix. To get it, go back in git history. Sorry for inconvenience.
 
 ## Language support
 
-If you install all files, only English is supported. If you however do not install my changes of convert-to-vampire scheme, all languages are supported.
+If you install all files, only English is supported. However, if you do not apply my changes to convert-to-vampire scheme, all languages are supported.
 
 ## Bugs
 
@@ -36,12 +38,12 @@ To really enable the cure, one line was added to precondition trigger. As a bonu
 ```
 NOT = { has_trait = lifespan_1 has_trait = lifespan_2 }
 ```
-Two conditions in bracers and explicitly ANDed, therefore the line means "don't have both life1 and life2". Thus the line evaluates `yes` for all characters. This is either a bug or obfucscation, most probably bug.
+Two conditions in bracers and explicitly ANDed, therefore the expression in bracers means "don't have both life1 and life2 span". Thus the line evaluates `yes` for all characters. This is either a bug or obfucscation, most probably bug.
 
 The subroutine has other problem: comment `3 + 3 = 3 or 2 or 4` mismatches code. Code analysis reveals that it should have been `3 + 3 = 3 or 4`.
 
 I reimplemented the subroutine, following comments like `3 + 3 = …`, and mostly keeping chances found in random_list blocks. File path: `common/scripted_effects/lifespan_traits_inheritance.txt` and `common/script_values/lifespan_traits_inheritance_effect.txt`. My code is a lot shorter (172+39 visus 719) and clearer, because I pre-calculate two numbers in range 0…4 representing gene level and only then produce result.
-* Success chance for convert to vampire scheme is miscalculated. It always discriminates religiously inclined characters. Suppose for instance, that Harkon is converting his zealous courtier, both believe that vampirism is a blessing. Success chance will get down, the more godly the courtier is, and -50 malus will be applied for zealous trait, completely ignoring faith tenets. File path: `common/schemes/scheme_types/ek_convert_to_vampire_scheme.txt` and `localization/`.
+* Success chance for convert to vampire scheme is miscalculated. It always discriminates religiously inclined characters. Suppose for instance, that Harkon is converting his zealous courtier, both believe that vampirism is a blessing. Success chance will get down, the more godly the courtier is, and -50 malus will be applied for zealous trait, completely ignoring faith tenets. My code respects religious beliefs and gives bonuses when appropriate. File path: `common/schemes/scheme_types/ek_convert_to_vampire_scheme.txt` and `localization/`.
 
 ## Gameplay changes
 
@@ -77,7 +79,9 @@ To solve problem no.4, major changes are required.
 
 ## Performance optimization
 
-ELder Kings subroutine `add_magicka` is slower than it could be — it usually evaluates scripted value `magicka_max` twice. I created code that only evaluates the script once, is functionally equivalent, and also shorter (15 lines instead of 24 lines). If you want performance gain, keep file `common/scripted_effects/add_magicka.txt`.
+1. ELder Kings subroutine `add_magicka` is slower than it should be — it usually evaluates scripted value `magicka_max` twice. I created code that only evaluates the script once, is functionally equivalent, and also shorter (15 lines instead of 24 lines). If you want performance gain, keep file `common/scripted_effects/zz_add_magicka.txt`.
+2. ELder Kings scripted value `ek_human_age_equivalent` is slower than it should be — it usually evaluates scripted value `ek_human_age_equivalent_calc` twice. My code is free from the defect and functionally equivalent. If you want performance gain, keep file `common/script_values/zz_ek_change_age.txt`.
+
 
 ## Unsolved problems
 
@@ -98,7 +102,7 @@ If you do not play on a very good computer, then do not apply the birthrate chan
 ## Installation
 
 1. Unpack .zip.
-2. Remove `readme.md` and files you do not want installed. For instance, if you do not want to greatly slow-down your game, remove or modify `ek_fixes_and_tweaks/common/defines/ek_fixes_and_tweaks_defines.txt`.
+2. Remove `readme.md` and files you do not want installed. For instance, if you do not want to greatly slow-down your game, remove or modify `common/defines/ek_fixes_and_tweaks_defines.txt`.
 3. Copy all remaining files into `mod` directory, where you put `elder-kings-ck3.mod` file.
 4. Activate via launcher called `dowser.exe`.
 
