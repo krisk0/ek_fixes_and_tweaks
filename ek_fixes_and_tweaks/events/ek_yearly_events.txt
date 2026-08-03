@@ -2121,7 +2121,7 @@ ek_yearly_events.0037 = {
 	cooldown = { years = yearly_cooldown }
 
 	trigger = {
-		has_title = title:b_davon_watch
+		has_title = title:b_darvonis
 	}
 
 	immediate = {
@@ -6101,12 +6101,12 @@ ek_yearly_events.0093 = {
 					}
 					OR = {
 						trait_is_shunned_in_faith_trigger = {
-							TRAIT = adulterer
+							TRAIT = trait:adulterer
 							GENDER_CHARACTER = root
 							FAITH = root.faith
 						}
 						trait_is_criminal_in_faith_trigger = {
-							TRAIT = adulterer
+							TRAIT = trait:adulterer
 							GENDER_CHARACTER = root
 							FAITH = root.faith
 						}
@@ -6920,12 +6920,12 @@ ek_yearly_events.0100 = {
 					}
 					OR = {
 						trait_is_shunned_in_faith_trigger = {
-							TRAIT = adulterer
+							TRAIT = trait:adulterer
 							GENDER_CHARACTER = root
 							FAITH = root.faith
 						}
 						trait_is_criminal_in_faith_trigger = {
-							TRAIT = adulterer
+							TRAIT = trait:adulterer
 							GENDER_CHARACTER = root
 							FAITH = root.faith
 						}
@@ -9554,6 +9554,7 @@ ek_yearly_events.0129 = {
 
 	left_portrait = {
 		character = root
+		animation = shock
 	}
 
 	right_portrait = {
@@ -9567,6 +9568,10 @@ ek_yearly_events.0129 = {
 		any_courtier_or_guest = {
 			is_available_ai_adult = yes
 			prowess < 9
+		}
+
+		capital_county ?= {
+			county_control <= 100
 		}
 	}
 
@@ -9737,6 +9742,19 @@ ek_yearly_events.0129 = {
 				}
 			}
 		}
+	}
+
+	option = { # GUARDS!
+		name = ek_yearly_events.0129.e
+		scope:quester = {
+			add_opinion = {
+				modifier = grateful_opinion
+				target = root
+				opinion = 20
+			}
+		}
+
+		add_prestige = minor_prestige_loss
 	}
 
 	option = { # nope
@@ -10710,7 +10728,6 @@ ek_yearly_events.0138 = {
 				has_trait = pneumonic
 				has_trait = typhus
 				has_trait = smallpox
-				has_trait = lovers_pox
 				has_trait = measles
 				has_trait = dysentery
 				has_trait = ergotism
@@ -10718,6 +10735,8 @@ ek_yearly_events.0138 = {
 				has_trait = leper
 				has_trait = sanguinare_vampiris
 				has_trait = sanies_lupinus
+				#ek_fixes_and_tweaks addition: one line below
+				has_trait = lovers_pox
 			}
 			piety >= medium_piety_value
 		}
@@ -12619,54 +12638,6 @@ ek_yearly_events.0165 = {
 			}
 			create_artifact_sotha_gear_effect = { OWNER = root }
 		}
-	}
-}
-
-# Legacy of the Bretons
-ek_yearly_events.0166 = {
-	type = character_event
-	content_source = dlc_ek
-	title = ek_yearly_events.0166.t
-	desc = ek_yearly_events.0166.desc
-	theme = family
-
-	left_portrait = {
-		character = root
-		animation = thinking
-	}
-
-	cooldown = { years = yearly_cooldown }
-
-	trigger = {
-		culture = { has_cultural_pillar = heritage_breton }
-	}
-
-	option = { # magical legacy
-		name = ek_yearly_events.0166.a
-		random = {
-			chance = 30
-			add_magic_lifestyle_xp = medium_lifestyle_xp
-		}
-	}
-
-	option = { # druidic legacy
-		name = ek_yearly_events.0166.b
-		add_piety = medium_piety_gain
-	}
-
-	option = { # balance
-		name = ek_yearly_events.0166.c
-		add_piety = minor_piety_gain
-		random = {
-			chance = 30
-			add_magic_lifestyle_xp = minor_lifestyle_xp
-		}
-	}
-
-	option = { # reject tradition
-		name = ek_yearly_events.0166.d
-		add_prestige = medium_prestige_gain
-		add_dread = minor_dread_gain
 	}
 }
 

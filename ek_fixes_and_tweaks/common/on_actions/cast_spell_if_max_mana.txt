@@ -1,18 +1,25 @@
-﻿# If mana is maximal, cast a spell
-ekfix_cast_a_spell = {
-	check_create_action = {
-		if = {
-			limit = {
-				exists = var:magicka
-				var:magicka >= t1_spell_cost
-				var:magicka = magicka_max
-			}
-		}
-		# TODO: heal sick child if possible
-		ai_magic_general_effect = yes # AI will cast spells
-		ai_court_mage_magic_effect = yes # AI Court Mage will cast spells
-	}
+﻿# If mana is maximal, cast a spell. Do it approximately once per month.
+on_birthday = {
+	on_actions = { ekfix_adult_cast_spell_loop }
+}
 
+
+# Assume everyone can become a spell-caster, or lose spell-casting abilities.
+#  Thus fire event ekfix_cast.0001 for everyone, approximately once per month.
+ekfix_adult_cast_spell_loop = {
+	trigger = {
+		is_adult = yes
+		# Optimization: do not bother if no mana at all
+		exists = var:magicka
+		# No more than one loop per character
+		NOT = { var:ekfix_adult_cast_spell_loop_runs ?= yes }
+	}
 	effect = {
+		# Start the loop, once per character
+		set_variable = ekfix_adult_cast_spell_loop_runs
+		trigger_event = {
+			id = ekfix_cast.0001
+			days = { 13 19 }
+		}
 	}
 }

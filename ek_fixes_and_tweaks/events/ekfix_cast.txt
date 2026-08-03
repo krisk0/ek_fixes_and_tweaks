@@ -1,0 +1,23 @@
+﻿namespace = ekfix_cast
+
+# Cast a spell if mana is maximal, call self with a random delay (31-35 days)
+ekfix_cast.0001 = {
+	hidden = yes
+	immediate = {
+		if = {
+			limit = {
+				# Assume magicka variable can be destroyed by an event, always check
+				exists = var:magicka
+				var:magicka >= t1_spell_cost
+				var:magicka = magicka_max
+			}
+			# TODO: heal someone sick if possible
+			ai_magic_general_effect = yes # AI will cast spells
+			ai_court_mage_magic_effect = yes # AI Court Mage will cast spells
+		}
+		trigger_event = {
+			id = ekfix_cast.0001
+			days = { 31 35 }
+		}
+	}
+}
