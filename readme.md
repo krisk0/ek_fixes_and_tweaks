@@ -84,7 +84,7 @@ To solve problem no.4, major changes are required.
 ## Performance optimization
 
 1. ELder Kings subroutine `add_magicka` is slower than it should be — it usually evaluates scripted value `magicka_max` twice. I created code that only evaluates the script once, is functionally equivalent, and also shorter (15 lines instead of 24 lines). If you want performance gain, keep file `common/scripted_effects/zz_add_magicka.txt`.
-2. ELder Kings scripted value `ek_human_age_equivalent` is slower than it should be — it usually evaluates scripted value `ek_human_age_equivalent_calc` twice. My code is free from the defect and functionally equivalent. If you want performance gain, keep file `common/script_values/zz_ek_change_age.txt`.
+2. ELder Kings scripted value `ek_human_age_equivalent` is slower than it should be — it usually evaluates scripted value `ek_human_age_equivalent_calc` twice. My code is free from the defect, functionally equivalent and shorter. If you want performance gain, keep file `common/script_values/ek_human_age_equivalent.txt`.
 
 ## Unsolved problems
 
