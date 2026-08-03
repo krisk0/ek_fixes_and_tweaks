@@ -4,3 +4,4 @@
  SCHEME_AFRAID_OF_ILLNESS: "[target.GetShortUIName] is afraid of epidemy: $VALUE|0=-+$"
 
  FERTILITY_TOOLTIP: "@county_fertility_icon!#T Fertility#! \nChance to make a new baby"
+ CHARACTER_VIEW_AGE_TOOLTIP: "[Character.GetDeathOrBirthDateInfo]  equivalent age [Character.MakeScope.ScriptValue('ek_human_age_equivalent')|V0]"

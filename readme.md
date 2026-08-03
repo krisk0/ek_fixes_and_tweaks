@@ -20,7 +20,7 @@ If you are playing game version 1.18.*, use [ek_fixes_and_tweaks](https://github
 
 ## Language support
 
-Only English is supported. However, there are only 4 lines to translate, should you wish to do so.
+Only English is supported. However, there are only 5 lines to translate, should you wish to do so.
 
 ## Bugs
 
@@ -28,7 +28,7 @@ Send bugreports and suggestions via github. If you found the mod elsewhere, you 
 
 ## Interface changes
 
-* `window_character.gui` changes main character window so fertility is displayed next to age. As a bonus, some whitespace at end-of-line was removed. File path: `gui/window_character.gui`.
+* `window_character.gui` changes main character window so fertility is displayed next to age. Also hovering over age shows human age equivalent along with birtday. As a bonus, some whitespace at end-of-line was removed. File path: `gui/window_character.gui`.
 * `00_knight_culture.txt` fixes knight names so they are always called knignts, not pelin or jaqspur. File path: `common/customizable_localization/00_knight_culture.txt`.
 
 ## Bug fixes

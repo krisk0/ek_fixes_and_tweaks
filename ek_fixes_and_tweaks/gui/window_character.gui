@@ -4347,7 +4347,7 @@ types CharacterWindow
 			fontsize_min = 14
 			align = nobaseline
 
-			tooltip = "CHARACTER_VIEW_AGE_TT"
+			tooltip = "CHARACTER_VIEW_AGE_TOOLTIP"
 		}
 
 		hbox = {
