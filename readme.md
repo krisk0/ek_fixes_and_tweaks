@@ -20,7 +20,7 @@ If you are playing game version 1.18.*, use [ek_fixes_and_tweaks](https://github
 
 ## Language support
 
-If you install all files, only English is supported. However, if you do not apply my changes to convert-to-vampire scheme, all languages are supported.
+Only English is supported. However, there are only 4 lines to translate, should you wish to do so.
 
 ## Bugs
 
@@ -29,6 +29,7 @@ Send bugreports and suggestions via github. If you found the mod elsewhere, you 
 ## Interface changes
 
 * `window_character.gui` changes main character window so fertility is displayed next to age. As a bonus, some whitespace at end-of-line was removed. File path: `gui/window_character.gui`.
+* `00_knight_culture.txt` fixes knight names so they are always called knignts, not pelin or jaqspur. File path: `common/customizable_localization/00_knight_culture.txt`.
 
 ## Bug fixes
 
@@ -43,12 +44,12 @@ Two conditions in bracers and explicitly ANDed, therefore the expression in brac
 The subroutine has other problem: comment `3 + 3 = 3 or 2 or 4` mismatches code. Code analysis reveals that it should have been `3 + 3 = 3 or 4`.
 
 I reimplemented the subroutine, following comments like `3 + 3 = …`, and mostly keeping chances found in random_list blocks. File path: `common/scripted_effects/lifespan_traits_inheritance.txt` and `common/script_values/lifespan_traits_inheritance_effect.txt`. My code is a lot shorter (172+39 visus 719) and clearer, because I pre-calculate two numbers in range 0…4 representing gene level and only then produce result.
-* Success chance for convert to vampire scheme is miscalculated. It always discriminates religiously inclined characters. Suppose for instance, that Harkon is converting his zealous courtier, both believe that vampirism is a blessing. Success chance will get down, the more godly the courtier is, and -50 malus will be applied for zealous trait, completely ignoring faith tenets. My code respects religious beliefs and gives bonuses when appropriate. File path: `common/schemes/scheme_types/ek_convert_to_vampire_scheme.txt` and `localization/`.
+* Success chance for convert to vampire scheme is miscalculated. It often discriminates religiously inclined characters. Suppose for instance, that Harkon is converting his zealous courtier, both believe that vampirism is a blessing. Success chance will get down, the more godly the courtier is, and -50 malus will be applied for zealous trait, completely ignoring faith tenets. My code respects religious beliefs and gives bonuses when appropriate. File path: `common/schemes/scheme_types/ek_convert_to_vampire_scheme.txt` and `localization/`.
 
 ## Gameplay changes
 
 * `00_wet_nurse_tasks.txt` allows wet nurse to educate characters educated by liege as other children. In EK mod, wet nurse will not teach virtues to children educated by liege. File path: `common/court_positions/tasks/00_wet_nurse_tasks.txt`.
-* The file also changes the logic of instilling virtue, making it close to what it was in version 0.18.0.2 of EK mod. In EK version 0.19.0.1, only one little courtier can get a virtue per month; in 0.18.0.2, each little courtier could. The file `common/court_positions/tasks/00_wet_nurse_tasks.txt` makes it so multiple children potentially update their traits in single month.
+* The file also changes the logic of instilling virtue, making it close to what it was in version 0.18.0.2 of EK mod. In EK version 0.19.0.1, only one little courtier can get a virtue per month; in 0.18.0.2, each little one could. The file `common/court_positions/tasks/00_wet_nurse_tasks.txt` makes it so multiple children potentially update their traits in single month.
 * `cast_spell_if_max_mana.txt` improves AI spellcasting. It forces AI character to cast a spell as soon as their mana pool is maximal. Note that AI spellcasting is awkward, see subsection *AI spellcasting problems* below. If you want AI to monthly check if mana is maximal and attempt to cast a spell, keep file `common/on_actions/cast_spell_if_max_mana.txt` and `events/ekfix_cast.txt`.
 * Epidemic would not start at all if you are playing tutorial. Epidemic would not start in your lands if global variable `start_epidemic_grace` is set, which is unfair. If you agree with me that player land protection from epidemic is unfair, and do not mind epidemic during tutorial, remove all blocks of code from file `common/script_values/06_ce1_epidemics_values.txt` from installed EK mod that look like:
 ```
@@ -65,7 +66,7 @@ I reimplemented the subroutine, following comments like `3 + 3 = …`, and mostl
 
 Liege usually educates most important children, such as future rulers or councillors. Not giving them virtues is a great disadvantage. Besides, children are supposed to have close contacts with each other, so it is natural if all are indoctrinated with the same values.
 
-If your wives, lovers and courties made many children, then they all should be educated and taught virtues. Perhaps they learn from one another. More than one child should be able to acquire a good trait every month, like it was in version 0.18.0.2.
+If your wives, lovers and courties made many children, then they all should be educated and taught virtues. Having lots of children at court should not decrease chance of proper education. More than one child should be able to acquire a good trait every month, like it was in version 0.18.0.2.
 
 ### AI spellcasting problems
 
@@ -99,17 +100,16 @@ I suggest that you be careful with the decision. Perhaps save game before taking
 
 * `ek_fixes_and_tweaks_defines.txt` removes upper limit on children of land owners; allows non-landed people to have five children; increases impregnation probability. File path: `common/defines/ek_fixes_and_tweaks_defines.txt`.
 
-If you do not play on a very good computer, or do not want to significantly increase population, then do not apply the birthrate changes. You will experience a great slow-down if your computer is not top tier, late game might be unplayable. To handle increased population, your CPU should have a good single-tasking performance and have good caches.
+If you do not play on a very good computer, or do not want to significantly increase population, then do not apply the birthrate changes. You will experience a great slow-down if your computer is not top tier, late game might be unplayable. To handle increased population, your CPU should have a good single-tasking performance and good caches.
 
 ## Installation
 
 1. Unpack .zip.
-2. Remove `readme.md` and files you do not want installed. For instance, if you do not want to greatly slow-down your game, remove or modify `common/defines/ek_fixes_and_tweaks_defines.txt`.
+2. Remove `readme.md`; remove or tweak to your liking files you do not want installed. For instance, if you need fancy knight names like jaqspur, delete `common/customizable_localization/00_knight_culture.txt`; if you do not want to greatly slow-down your game, remove or tweak `common/defines/ek_fixes_and_tweaks_defines.txt`.
 3. Copy all remaining files into `mod` directory, where you put `elder-kings-ck3.mod` file.
 4. Activate via launcher called `dowser.exe`.
-5. Tweak files installed by EK mod to your taste, as described in subsection *Gameplay changes*.
-
-For more details on mod installation, see [wiki](https://ck3.paradoxwikis.com/Modding#Installing_mods_manually).
+5. Tweak `06_ce1_epidemics_values.txt` and `ek_transformation.txt` (installed by EK mod) to your taste — see subsection *Gameplay changes* for details.
+6. If you want to keep regular names of objects, for instance you prefer duchy to be always called duchy and not petty kingdom or something else, delete `common/flavorization` directory of EK mod.
 
 ## Note to Elder Kings team
 
