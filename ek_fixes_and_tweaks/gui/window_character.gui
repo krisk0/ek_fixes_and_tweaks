@@ -4383,7 +4383,9 @@ types CharacterWindow
 		# ek_fixes_and_tweaks addition: fertility percent
 		text_single = {
 			name = "fertility"
-			raw_text = "[Character.GetFertility|%0]"
+			text = "[Character.GetFertility|%0]"
+			tooltip = "FERTILITY_TOOLTIP"
+			using = tooltip_se
 			default_format = "#low"
 			fontsize = 20
 			fontsize_min = 14
