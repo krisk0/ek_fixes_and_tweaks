@@ -45,6 +45,7 @@ The subroutine has other problem: comment `3 + 3 = 3 or 2 or 4` mismatches code.
 
 I reimplemented the subroutine, following comments like `3 + 3 = …`, and mostly keeping chances found in random_list blocks. File path: `common/scripted_effects/lifespan_traits_inheritance.txt` and `common/script_values/lifespan_traits_inheritance_effect.txt`. My code is a lot shorter (172+39 visus 719) and clearer, because I pre-calculate two numbers in range 0…4 representing gene level and only then produce result.
 * Success chance for convert to vampire scheme is miscalculated. It often discriminates religiously inclined characters. Suppose for instance, that Harkon is converting his zealous courtier, both believe that vampirism is a blessing. Success chance will get down, the more godly the courtier is, and -50 malus will be applied for zealous trait, completely ignoring faith tenets. My code respects religious beliefs and gives bonuses when appropriate. File path: `common/schemes/scheme_types/ek_convert_to_vampire_scheme.txt` and `localization/`.
+* I experienced multiple errors related to file `events/pregnancy_events.txt`. `error.log` contained complaints that `scope:father` was unavailable in event `pregnancy.2002`. I fixed this error by adding a few checks. File path: `events/pregnancy_events.txt`.
 
 ## Gameplay changes
 
