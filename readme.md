@@ -105,6 +105,8 @@ If you do not play on a very good computer, or do not want to significantly incr
 
 ## Installation
 
+I suggest that you install at least bug fixes and optimization. I think most users should install all files except parameter changes `common/defines/ek_fixes_and_tweaks_defines.txt`.
+
 1. Unpack .zip.
 2. Remove `readme.md`; remove or tweak to your liking files you do not want installed. For instance, if you need fancy knight names like jaqspur, delete `common/customizable_localization/00_knight_culture.txt`; if you do not want to greatly slow-down your game, remove or tweak `common/defines/ek_fixes_and_tweaks_defines.txt`.
 3. Copy all remaining files into `mod` directory, where you put `elder-kings-ck3.mod` file.
