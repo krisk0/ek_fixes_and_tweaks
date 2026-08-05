@@ -179,9 +179,9 @@ convert_to_vampire = {
 			desc = SCHEME_OLD_ENOUGH
 		}
 		
-		# afraid of epidemic more willing
-		scope:target.location.county = {
-			any_county_province_epidemic = {}
+		# afraid of epidemic
+		modifier = {
+			scope:target.location.county = { any_county_province_epidemic = {} }
 			add = 40
 			desc = SCHEME_AFRAID_OF_ILLNESS
 		}
