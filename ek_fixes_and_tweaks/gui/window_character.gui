@@ -4382,6 +4382,7 @@ types CharacterWindow
 
 		# ek_fixes_and_tweaks addition: fertility percent
 		text_single = {
+			visible = "[Not( Character.IsDeadAndValid )]"
 			name = "fertility"
 			text = "[Character.GetFertility|%0]"
 			tooltip = "FERTILITY_TOOLTIP"
