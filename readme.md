@@ -49,6 +49,7 @@ I reimplemented the subroutine, following comments like `3 + 3 = …`, and mostl
 
 ## Gameplay changes
 
+* According to Skyrim lore, characters immediately heal all common diseases when sanguinare vampiris evolves to vampirism. If you agree with the statement, keep file  `common/scripted_effects/give_vampire_secret_or_trait_effect.txt`.
 * `00_wet_nurse_tasks.txt` allows wet nurse to educate characters educated by liege as other children. In EK mod, wet nurse will not teach virtues to children educated by liege. File path: `common/court_positions/tasks/00_wet_nurse_tasks.txt`.
 * The file also changes the logic of instilling virtue, making it close to what it was in version 0.18.0.2 of EK mod. In EK version 0.19.0.1, only one little courtier can get a virtue per month; in 0.18.0.2, each little one could. The file `common/court_positions/tasks/00_wet_nurse_tasks.txt` makes it so multiple children potentially update their traits in single month.
 * `cast_spell_if_max_mana.txt` improves AI spellcasting. It forces AI character to cast a spell as soon as their mana pool is maximal. Note that AI spellcasting is awkward, see subsection *AI spellcasting problems* below. If you want AI to monthly check if mana is maximal and attempt to cast a spell, keep file `common/on_actions/cast_spell_if_max_mana.txt` and `events/ekfix_cast.txt`.
